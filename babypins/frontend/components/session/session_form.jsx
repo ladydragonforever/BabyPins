@@ -31,8 +31,8 @@ class SessionForm extends React.Component {
 
     render() {
         const { errors, formType } = this.props;
-        // const path = formType === "Sign up" ? "/login" : "/signup";
-        // const link = formType === "Log in" ? "Sign up" : "Log in"
+        const path = formType === "Sign up" ? "/login" : "/signup";
+        const link = formType === "Log in" ? "Sign up" : "Log in"
         const messages = errors.length >= 1
             ? (
                 <ul>
@@ -43,20 +43,24 @@ class SessionForm extends React.Component {
 
 
         return (
-            <div>
+            <div className="session-main">
 
-                {/* <Link to={path}>{link}</Link> */}
-                {messages}
+                <Link to={path}>{link}</Link>
+                <h3>Welcome to Pinterest</h3>
 
                 <form onSubmit={this.handleSubmit}>
 
-                    <label>Email
-                       <input type="text"
+                {messages}
+                    <div>
+                       <input 
+                            className=""
+                            type="text"
                             value={this.state.email}
                             onChange={this.handleChange("email")}
+                            placeholder='Email'
                         />
 
-                    </label>
+                    </div>
 
                     <label>Password
                         <input type="password"

@@ -21,6 +21,7 @@ function Modal({ modal, closeModal }) {
     }
     return (
         <div className="modal-background" onClick={closeModal}>
+            <img className="modal-img"src="assets/modal-background.png" alt=""/>
             <div className="modal-child" onClick={e => e.stopPropagation()}>
                 {component}
             </div>

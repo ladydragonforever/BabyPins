@@ -1,0 +1,26 @@
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  // background-image: url('assets/modal-background.png');
+  z-index: 10;
+  background-repeat: repeat-y;
+  
+}
+
+.modal-img{
+  display: block;
+  width: auto;
+  height: 100%;
+
+}
+
+.modal-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

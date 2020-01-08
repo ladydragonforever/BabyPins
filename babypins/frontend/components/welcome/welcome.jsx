@@ -17,13 +17,28 @@ import React from "react";
 
         // )
    const Welcome = ({currentUser, logout, openModal}) => {
-    console.log(openModal);
+    
        const sessionLinks = () => (
-           <nav className="login-signup">
-               <button onClick={() => openModal('login')}>Login</button>
-               &nbsp;or&nbsp;
-               <button onClick={() => openModal('signup')}>Signup</button>
-           </nav>
+           <div className="welcome-main">
+               <h3>Welcome to Pinterest</h3>
+               <h3 className="welcome-sub">Find new ideas to try</h3>
+
+               <div className="welcome-login-signup">
+                   <button className="welcome-login" onClick={() => openModal('login')}>
+                       <div className="welcome-login-text">
+                        Login
+                       </div>
+                    </button>
+                   
+                   <button className="welcome-signup" onClick={() => openModal('signup')}>
+                       <div className="welcome-signup-text">
+                        Signup
+                       </div>
+                       
+                   </button>
+               </div>
+           </div>
+        
        );
        const personalGreeting = () => (
            <hgroup className="header-group">
