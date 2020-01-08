@@ -35,14 +35,16 @@ import { Link } from "react-router-dom";
                                 <button className="welcome-login" onClick={() => openModal('login')}>
 
                                     <div className="welcome-login-text">
-                                    Login
+                                        Login
                                     </div>
-                                </button></Link>
+                                </button>
+                            </Link>
                     
                             <Link to="/signup">
                                 <button className="welcome-signup" onClick={() => openModal('signup')}>
                                     <div className="welcome-signup-text">
-                                    Signup
+                                        
+                                        Signup
                                     </div>
                                 </button>
                             </Link>
