@@ -1,22 +1,42 @@
+.modal-main {
+  //z-index: 10;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+}
 .modal-background {
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.7);
-  // background-image: url('assets/modal-background.png');
-  z-index: 10;
-  background-repeat: repeat-y;
+  background-image: url(/assets/background.png);
+  opacity: 0.5;
+
   
 }
 
-.modal-img{
-  display: block;
-  width: auto;
-  height: 100%;
+.modal-background-background {
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: black;
 
 }
+
+// .modal-img{
+//   display: block;
+//   border: 2.5px solid black;
+//   width: 50%;
+//   // height: 100%;
+
+// }
 
 .modal-child {
   position: absolute;

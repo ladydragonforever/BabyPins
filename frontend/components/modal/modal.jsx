@@ -20,25 +20,30 @@ function Modal({ modal, closeModal }) {
             return null;
     }
     return (
-        <div className="modal-background" onClick={closeModal}>
-            <img className="modal-img"src="assets/modal-background.png" alt=""/>
-            <div className="modal-child" onClick={e => e.stopPropagation()}>
+        <div className="modal-background" >
+            <div className="modal-imgcontainer">
+                {/* <img className="modal-img" src={window.imagesUrl.modal} alt="" /> */}
+                {/* <img className="modal-img" src={window.imagesUrl.modal} alt="" /> */}
+            </div>
+          
+            <div className="modal-child">
                 {component}
             </div>
         </div>
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        modal: state.ui.modal
-    };
-};
+// const mapStateToProps = state => {
+//     return {
+//         modal: state.ui.modal
+//     };
+// };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        closeModal: () => dispatch(closeModal())
-    };
-};
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         closeModal: () => dispatch(closeModal())
+//     };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+// export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default Modal;

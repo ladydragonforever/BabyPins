@@ -19,12 +19,12 @@ const receiveSessionErrors = payload => ({
 })
 export const signUp = formUser => dispatch => postUser(formUser)
     .then(response => dispatch(receiveCurrentUser(response)),
-        err => dispatch(receiveSessionErrors(err)));
+        err => dispatch(receiveSessionErrors(err.responseJSON)));
 
 export const login = formUser => dispatch => postSession(formUser)
     .then(response => dispatch(receiveCurrentUser(response)),
-        err => dispatch(receiveSessionErrors(err)));
+        err => dispatch(receiveSessionErrors(err.responseJSON)));
 
 export const logout = () => dispatch => deleteSession()
     .then(response => dispatch(logoutCurrentUser(response)),
-        err => dispatch(receiveSessionErrors(err)));
+        err => dispatch(receiveSessionErrors(err.responseJSON)));

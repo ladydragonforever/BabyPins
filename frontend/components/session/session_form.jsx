@@ -32,47 +32,67 @@ class SessionForm extends React.Component {
     render() {
         const { errors, formType } = this.props;
         const path = formType === "Sign up" ? "/login" : "/signup";
-        const link = formType === "Log in" ? "Sign up" : "Log in"
-        const messages = errors.length >= 1
+        const link = formType === "Log in" ? "Sign up" : "Log in";
+        console.log(errors);
+        const messages = errors.length >= 1 
             ? (
                 <ul>
-                    errors.map(error => <li>{error}</li>)
+                    {errors.map(error => (<li>{error}</li>))}
                 </ul>
-            )
-            : null
+            ) : null
 
 
         return (
-            <div className="session-main">
-
-                <Link to={path}>{link}</Link>
-                <h3>Welcome to Pinterest</h3>
-
-                <form onSubmit={this.handleSubmit}>
-
-                {messages}
-                    <div>
-                       <input 
-                            className=""
-                            type="text"
-                            value={this.state.email}
-                            onChange={this.handleChange("email")}
-                            placeholder='Email'
-                        />
-
+            <div className="modal-main" >
+                <div className="modal-background-background">
+                    <div className="modal-background">
                     </div>
+                </div>
 
-                    <label>Password
-                        <input type="password"
-                            value={this.state.password}
-                            onChange={this.handleChange("password")}
-                        />
+                    <Link to={path}>
+                        <div className="session-link">
+                            {link}
+                        </div>
+                    </Link>
+                <div className="modal-child">
+            <div className="session-main">
+                <div className="session-box">
+                    <h3>Welcome to Baby Pins</h3>
 
-                    </label>
+                    <form onSubmit={this.handleSubmit} className="session-form">
 
-                    <button>{formType}</button>
-                </form>
+                        {messages}
+                        <div className="session-input">
+                            <input
+                                className="session-input-email"
+                                type="text"
+                                value={this.state.email}
+                                onChange={this.handleChange("email")}
+                                placeholder='Email'
+                            />
+
+                        </div>
+
+                        <div className="session-input">
+                            <input
+                                className="session-input-password"
+                                type="password"
+                                value={this.state.password}
+                                onChange={this.handleChange("password")}
+                                placeholder="Password"
+                            />
+
+                        </div>
+
+                        <button className="session-button" >{formType}</button>
+                    </form>
+                </div>
+                
             </div>
+                </div>
+            </div>
+
+
         );
     }
 
