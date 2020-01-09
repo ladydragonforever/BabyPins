@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import SessionForm from "./session_form";
 // import React from "react";
-import { signUp } from "../../actions/session";
+import { signUp, clearErrors } from "../../actions/session";
+import {withRouter} from "react-router-dom";
 // import {openModal, closeModal} from "../../actions/modal"
 
 const mSTP = (state) => ({
@@ -12,12 +13,8 @@ const mSTP = (state) => ({
 
 const mDTP = (dispatch) => ({
     signUp: (formUser) => dispatch(signUp(formUser)),
-    // otherForm: (
-    //     <button onClick={() => dispatch(openModal('singup'))}>
-    //         Sign Up
-    //     </button>
-    // ),
-    // closeModal: () => dispatch(closeModal())
+    clearErrors: () => dispatch(clearErrors()),
+   
 })
 
-export default connect(mSTP, mDTP)(SessionForm)
+export default withRouter(connect(mSTP, mDTP)(SessionForm))

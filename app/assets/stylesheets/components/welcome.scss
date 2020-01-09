@@ -1,23 +1,33 @@
+.logo {
+   display: block;
+   margin: auto;
+   width: 44px;
+   height: 44px; 
+   padding-top: 40px;
+   
+}
 .welcome-main {
     text-align: center;
-    border-radius: 8px;
-    padding: 12px 14px;
-    width: 404px;
-    height: 350px;
+    border-radius: 10px;
+    width: 484px;
+    height: 383px;
     background-color: white;
 }
 .welcome-sub {
     font-size:  16px;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 7px;
 }
 .welcome-login-signup {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 404px;
+    width: 388px;
     height: 120px;
     background-color: white;
     margin: auto;
+    padding-top: 14px;
 }
 .welcome-login {
     display: block;
@@ -49,11 +59,11 @@
     display: block;
     font-size: 18px;
     color: #fff; 
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: "Roboto",sans-serif;
 }
 .welcome-signup-text {
     display: block;
     font-size: 18px;
     color: #333; 
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: "Roboto",sans-serif;
 }

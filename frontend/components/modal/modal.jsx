@@ -22,8 +22,6 @@ function Modal({ modal, closeModal }) {
     return (
         <div className="modal-background" >
             <div className="modal-imgcontainer">
-                {/* <img className="modal-img" src={window.imagesUrl.modal} alt="" /> */}
-                {/* <img className="modal-img" src={window.imagesUrl.modal} alt="" /> */}
             </div>
           
             <div className="modal-child">
@@ -33,17 +31,16 @@ function Modal({ modal, closeModal }) {
     );
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         modal: state.ui.modal
-//     };
-// };
+const mapStateToProps = state => {
+    return {
+        modal: state.ui.modal
+    };
+};
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         closeModal: () => dispatch(closeModal())
-//     };
-// };
+const mapDispatchToProps = dispatch => {
+    return {
+        closeModal: () => dispatch(closeModal())
+    };
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Modal);
-export default Modal;
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);
