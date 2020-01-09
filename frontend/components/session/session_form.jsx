@@ -98,7 +98,7 @@ class SessionForm extends React.Component {
             }
         }, intervalSpeed);
     }
-
+    
     render() {
         const { errors, formType } = this.props;
         const path = formType === "Sign up" ? "/login" : "/signup";
@@ -117,7 +117,7 @@ class SessionForm extends React.Component {
             </div>
         )
         : null
-    
+       
         const messages = errors.length >= 1 
             ? (
                 <ul>
