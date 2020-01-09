@@ -1,2 +1,5 @@
-node_modules
-tmp
+/node_modules/
+/tmp
+/log/*
+bundle.js
+bundle.map.js
