@@ -12,9 +12,9 @@ const App = () => (
         {/* <Modal/> */}
         <ProtectedRoute exact path="/" component={NavBarContainer}/>
         <Switch>
-            <AuthRoute exact path="/" component={Welcome}/>
-            <Route exact path="/login" component={LoginFormContainer} />
-            <Route exact path="/signup" component={SignUpFormContainer} />
+            <AuthRoute exact path="/" component={Welcome}/>  
+            <AuthRoute exact path="/login" component={LoginFormContainer} />
+            <AuthRoute exact path="/signup" component={SignUpFormContainer} />
             <Redirect to="/"/>
         </Switch>
     </div>

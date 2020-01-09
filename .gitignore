@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 /node_modules/
 /tmp
 /log/*
 bundle.js
 bundle.map.js
+=======
+node_modules/
+/tmp/*
+bundle.js
+bundle.js.map
+
+>>>>>>> test
