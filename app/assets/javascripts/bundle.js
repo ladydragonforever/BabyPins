@@ -115,6 +115,57 @@ var closeModal = function closeModal() {
 
 /***/ }),
 
+/***/ "./frontend/actions/picture.jsx":
+/*!**************************************!*\
+  !*** ./frontend/actions/picture.jsx ***!
+  \**************************************/
+/*! exports provided: RECEIVE_PICTURES, RECEIVE_PICTURE, requestPictures, requestPicture */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PICTURES", function() { return RECEIVE_PICTURES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PICTURE", function() { return RECEIVE_PICTURE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestPictures", function() { return requestPictures; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestPicture", function() { return requestPicture; });
+/* harmony import */ var _util_picture__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/picture */ "./frontend/util/picture.js");
+
+var RECEIVE_PICTURES = "RECEIVE_PICTURES";
+var RECEIVE_PICTURE = "RECEIVE_PICTURE";
+
+var receivePictures = function receivePictures(payload) {
+  return {
+    type: RECEIVE_PICTURES,
+    payload: payload
+  };
+};
+
+var receivePicture = function receivePicture(payload) {
+  return {
+    type: RECEIVE_PICTURE,
+    payload: payload
+  };
+};
+
+var requestPictures = function requestPictures() {
+  return function (dispactch) {
+    return Object(_util_picture__WEBPACK_IMPORTED_MODULE_0__["fetchPictures"])().then(function (res) {
+      return dispactch(receivePictures(res));
+    });
+  };
+};
+var requestPicture = function requestPicture(pictureId) {
+  return function (dispactch) {
+    return Object(_util_picture__WEBPACK_IMPORTED_MODULE_0__["fetchPicture"])(pictureId).then(function (res) {
+      return dispactch(receivePicture(res));
+    });
+  };
+};
+window.requestPictures = requestPictures;
+window.requestPicture = requestPicture;
+
+/***/ }),
+
 /***/ "./frontend/actions/session.jsx":
 /*!**************************************!*\
   !*** ./frontend/actions/session.jsx ***!
@@ -867,14 +918,15 @@ var Welcome = function Welcome() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _session__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./session */ "./frontend/reducers/session.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users */ "./frontend/reducers/users.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users */ "./frontend/reducers/users.js");
+/* harmony import */ var _picture__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./picture */ "./frontend/reducers/picture.js");
 
 
 
-var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_1__["combineReducers"])({
-  users: _users__WEBPACK_IMPORTED_MODULE_2__["default"]
+var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
+  users: _users__WEBPACK_IMPORTED_MODULE_1__["default"],
+  pictures: _picture__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -927,6 +979,45 @@ function modalReducer() {
       return state;
   }
 }
+
+/***/ }),
+
+/***/ "./frontend/reducers/picture.js":
+/*!**************************************!*\
+  !*** ./frontend/reducers/picture.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_picture__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/picture */ "./frontend/actions/picture.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var picturesReducer = function picturesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_picture__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PICTURES"]:
+      return action.payload;
+
+    case _actions_picture__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PICTURE"]:
+      return _objectSpread({}, state, _defineProperty({}, action.payload.id, action.payload));
+
+    default:
+      state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (picturesReducer);
 
 /***/ }),
 
@@ -1109,6 +1200,32 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/picture.js":
+/*!**********************************!*\
+  !*** ./frontend/util/picture.js ***!
+  \**********************************/
+/*! exports provided: fetchPictures, fetchPicture */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPictures", function() { return fetchPictures; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPicture", function() { return fetchPicture; });
+var fetchPictures = function fetchPictures() {
+  return $.ajax({
+    method: "Get",
+    url: "api/pictures"
+  });
+};
+var fetchPicture = function fetchPicture(pictureId) {
+  return $.ajax({
+    method: "Get",
+    url: "api/pictures"
+  });
+};
 
 /***/ }),
 
