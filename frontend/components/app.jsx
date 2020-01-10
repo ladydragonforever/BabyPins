@@ -7,19 +7,22 @@ import Modal from "./modal/modal";
 import Welcome from "./welcome/welcome";
 import NavBarContainer from "./nav_bar/nav_container";
 import PictureIndexContainer from "./picture/picture_index_container";
+import PictureShowContainer from "./picture/picture_show_container";
 
 const App = () => (
     <div>
         {/* <Modal/> */}
-        {/* <Route exact path="/pictures" component={PictureIndexContainer} /> */}
         <NavBarContainer/>
-        <ProtectedRoute exact path="/" component={PictureIndexContainer}/>
+        <ProtectedRoute exact path="/" component={PictureIndexContainer} />
         <Switch>
+            <ProtectedRoute exact path="/pictures/:pictureId" component={PictureShowContainer} />
+        
             <AuthRoute path="/login" component={LoginFormContainer} />
             <AuthRoute path="/signup" component={SignUpFormContainer} />
             <AuthRoute exact path="/" component={Welcome}/>  
-            <Redirect to="/"/>
+            {/* <Redirect to="/"/> */}
         </Switch>
     </div>
+
 )
 export default App;

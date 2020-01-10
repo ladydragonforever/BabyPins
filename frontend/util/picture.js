@@ -8,6 +8,6 @@ export const fetchPictures =() => (
 export const fetchPicture = (pictureId) => (
     $.ajax({
         method: "Get",
-        url: "api/pictures"
+        url: `api/pictures/${pictureId}`
     })
 )

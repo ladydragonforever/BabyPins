@@ -18,7 +18,7 @@ export const requestPictures = () => dispactch => fetchPictures()
 .then(res => dispactch(receivePictures(res)));
 
 export const requestPicture = (pictureId) => dispactch => fetchPicture(pictureId)
-.then(res => dispactch(receivePicture(res)))
+.then((res) => dispactch(receivePicture(res)))
 
 window.requestPictures = requestPictures;
 window.requestPicture = requestPicture;
