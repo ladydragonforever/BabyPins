@@ -1,0 +1,74 @@
+.nav-main {
+    display: flex;
+
+}
+
+.nav-logo {
+    display: block;
+    margin: auto;
+    width: 28px;
+    height: 28px; 
+    border: 10px solid white;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.nav-logo-link {
+    display: block;
+    background-color: white;  
+}
+
+.nav-logo:hover {
+       border: 10px solid $pinterest-gray;
+}
+
+
+
+
+.nav-section {
+    display: flex;
+}
+
+.nav-search{
+    display: block;
+    margin: auto;
+    height: 28px; 
+    border: 10px solid white;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.nav-follow {
+    display: block;
+    margin: auto;
+    height: 28px; 
+    border: 10px solid white;
+    border-radius: 5px;
+    background-color: white;
+    font-family: $pinterest-font;
+    font-size: 14px;
+}
+
+.nav-follow:hover {
+    border: 10px solid $pinterest-gray; 
+    background-color: $pinterest-gray;
+}
+
+.nav-home {
+   display: block;
+    margin: auto;
+    height: 28px; 
+    border: 10px solid white;
+    border-radius: 5px;
+    background-color: white;
+    font-family: $pinterest-font;
+    font-size: 14px;
+}
+.nav-home:hover {
+    border: 10px solid $pinterest-gray; 
+    background-color: $pinterest-gray;
+}
+
+.nav-logout {
+
+}

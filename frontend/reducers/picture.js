@@ -7,7 +7,7 @@ const picturesReducer = (state={}, action) => {
             return action.payload;
         case RECEIVE_PICTURE:
             return {...state, [action.payload.id]: action.payload};
-        default: state;      
+        default: return state;      
     }
 }
 

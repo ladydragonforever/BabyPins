@@ -4,8 +4,8 @@ import { logout } from '../../actions/session';
 // import { openModal } from '../../actions/modal';
 import NavBar from './nav_bar.jsx';
 
-const mapStateToProps = ({ session }) => ({
-    currentUser: session.id
+const mapStateToProps = (state) => ({
+    currentUser: state.entities.users[state.session.id]
 });
 
 const mapDispatchToProps = dispatch => {

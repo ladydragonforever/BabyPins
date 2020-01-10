@@ -3,9 +3,12 @@ import PictureIndexItem from "./picture_index_item";
 
 class PictureIndex extends React.Component {
     
-
+    componentDidMount(){
+        this.props.requestPictures();
+    }
     render(){
-        const {pictures} = this.props.pictures;
+        const {pictures} = this.props;
+        // console.log(pictures)
         return (
             <div>
                 <ul>

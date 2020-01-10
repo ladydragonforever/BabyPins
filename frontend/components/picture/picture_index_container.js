@@ -10,4 +10,4 @@ const mDTP = dispatch => ({
     requestPictures: () => dispatch(requestPictures())
 })
 
-export default connect(mSTP, mDP)(PictureIndex);
+export default connect(mSTP, mDTP)(PictureIndex);

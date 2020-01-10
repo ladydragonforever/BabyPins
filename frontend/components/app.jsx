@@ -6,15 +6,18 @@ import { AuthRoute, ProtectedRoute, } from "../util/route_util";
 import Modal from "./modal/modal";
 import Welcome from "./welcome/welcome";
 import NavBarContainer from "./nav_bar/nav_container";
+import PictureIndexContainer from "./picture/picture_index_container";
 
 const App = () => (
     <div>
         {/* <Modal/> */}
-        <ProtectedRoute exact path="/" component={NavBarContainer}/>
+        {/* <Route exact path="/pictures" component={PictureIndexContainer} /> */}
+        <NavBarContainer/>
+        <ProtectedRoute exact path="/" component={PictureIndexContainer}/>
         <Switch>
+            <AuthRoute path="/login" component={LoginFormContainer} />
+            <AuthRoute path="/signup" component={SignUpFormContainer} />
             <AuthRoute exact path="/" component={Welcome}/>  
-            <AuthRoute exact path="/login" component={LoginFormContainer} />
-            <AuthRoute exact path="/signup" component={SignUpFormContainer} />
             <Redirect to="/"/>
         </Switch>
     </div>
