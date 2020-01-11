@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_220502) do
+ActiveRecord::Schema.define(version: 2020_01_10_233448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "boards", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "user_id", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_boards_on_title", unique: true
+  end
 
   create_table "pictures", force: :cascade do |t|
     t.string "title", null: false
@@ -22,6 +31,14 @@ ActiveRecord::Schema.define(version: 2020_01_09_220502) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["title"], name: "index_pictures_on_title", unique: true
+  end
+
+  create_table "pins", force: :cascade do |t|
+    t.integer "picture_id", null: false
+    t.integer "board_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["picture_id", "board_id"], name: "index_pins_on_picture_id_and_board_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
