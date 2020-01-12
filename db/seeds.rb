@@ -9,6 +9,9 @@
 ActiveRecord::Base.transaction do 
     User.destroy_all
     Picture.destroy_all
+    Picture.destroy_all
+    Board.destroy_all
+    Pin.destroy_all
 
     demo_user = User.create!(email: 'demo@demo.com', password: '123456')
 
@@ -54,5 +57,24 @@ ActiveRecord::Base.transaction do
     end
 
     Picture.create!(pictures)
+    
+    boards = []
+    board1 = Board.create!(title: "funny baby pics", description: "", user_id: demo_user.id)
+    boards << board1
+    board2 = Board.create!(title: "cute baby pics", description: "", user_id: demo_user.id)
+    boards << board2
+    
+    pictures_array = Picture.all.to_a
+    
+
+    boards.each do |board|
+        num_pics = rand(4..8)
+        selected_pics = pictures_array.shuffle.sample(num_pics)
+
+        selected_pics.each do |pic| 
+         Pin.create!(picture_id: pic.id, board_id: board.id)
+        end
+    end
+
     
 end

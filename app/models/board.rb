@@ -4,7 +4,7 @@ class Board < ApplicationRecord
     has_many :pins
     belongs_to :user
    
-    has_many :classified_pictures,
+    has_many :classified_pics,
     through: :pins,
     source: :picture
 

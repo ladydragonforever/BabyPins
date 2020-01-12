@@ -1,12 +1,12 @@
 class Api::BoardsController < ApplicationController
     def index
-        @boards = Board.all
+    @boards = Board.all
     end
     
     def show
         @board = Board.find(params[:id])
         if current_user.id == @board.user_id
-            render :show
+            render :show, status: 200
         else
             render json: ["Unauthorized user!"], status: 401
         end
@@ -18,7 +18,7 @@ class Api::BoardsController < ApplicationController
         bp[:user_id] = current_user.id
         @board = Board.new(bp)
         if @board.save
-            render :show
+            render :show, status: 200
         else
             render json: @board.errors.full_messages, status: 422
         end
@@ -30,9 +30,11 @@ class Api::BoardsController < ApplicationController
         if current_user.id != @board.user_id
             render json: ["Unauthorized user!"]
         end
+        bp =board_params
+        bp[:user_id] = current_user.id
 
-        if @board.update(board_params) 
-            render :show
+        if @board.update(bp) 
+            render :show, status: 200
         else
             render json: @board.errors.full_messages, status: 422
         end
@@ -47,7 +49,7 @@ class Api::BoardsController < ApplicationController
         end
 
         if @board.destroy
-            render :show
+            render :show, status: 200
         else
             render json: @board.errors.full_messages, status: 422
         end

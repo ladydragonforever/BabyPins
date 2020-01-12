@@ -8,12 +8,16 @@ import Welcome from "./welcome/welcome";
 import NavBarContainer from "./nav_bar/nav_container";
 import PictureIndexContainer from "./picture/picture_index_container";
 import PictureShowContainer from "./picture/picture_show_container";
+import BoardIndexContainer from "./boards/board_index_container";
 
 const App = () => (
     <div>
         {/* <Modal/> */}
         <NavBarContainer/>
         <ProtectedRoute exact path="/" component={PictureIndexContainer} />
+        <ProtectedRoute exact path="/boards" component={BoardIndexContainer} /> 
+        <ProtectedRoute exact path="/boards/:boardId" component={BoardEditContainer} />
+        {/* <ProtectedRoute exace path="/boards/" */}
         <Switch>
             <ProtectedRoute exact path="/pictures/:pictureId" component={PictureShowContainer} />
         

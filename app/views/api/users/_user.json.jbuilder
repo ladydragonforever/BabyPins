@@ -1,2 +1,4 @@
 json.extract! user, :id, :email, :board_ids
-json.pins user.pins
+
+json.pinned_pics user.pinned_pics
+
