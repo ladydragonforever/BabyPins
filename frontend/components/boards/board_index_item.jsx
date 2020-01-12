@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const BoardIndexItem = ({title, pinCount, board}) => {
     const display = board.fourPics 
@@ -15,10 +16,9 @@ const BoardIndexItem = ({title, pinCount, board}) => {
  
     return(
         <div>
-            {display}
+            <Link to={`/boards/${board.id}`}>{display}</Link>
             <div>{title}</div>
             <div>{pinCount}</div>
-            <Link to="">EditBoard</Link>
         </div>
     )
 }

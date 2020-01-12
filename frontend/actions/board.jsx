@@ -14,9 +14,8 @@ const receiveBoard = (payload) => ({
     payload
 })
 
-const removeBoard = (payload) => ({
-    type: REMOVE_BOARD,
-    payload
+const removeBoard = () => ({
+    type: REMOVE_BOARD
 })
 
 export const fetchBoards = () => dispatch => BoardUtil.requestBoards()
@@ -32,8 +31,8 @@ export const createBoard = board => dispatch => BoardUtil.createBoard(board)
 export const updateBoard = board => dispatch => BoardUtil.updateBoard(board)
 .then(res => dispatch(receiveBoard(res)))
 
-export const deleteBoard = boardId => dispatch => Board.Util.deleteBoard(boardId)
-.then(res => dispatch(removeBoard(res.id)))
+export const deleteBoard = boardId => dispatch => BoardUtil.deleteBoard(boardId)
+.then(() => dispatch(removeBoard(boardId)))
 
 
 window.fetchBoards = fetchBoards;

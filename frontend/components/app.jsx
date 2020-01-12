@@ -9,6 +9,9 @@ import NavBarContainer from "./nav_bar/nav_container";
 import PictureIndexContainer from "./picture/picture_index_container";
 import PictureShowContainer from "./picture/picture_show_container";
 import BoardIndexContainer from "./boards/board_index_container";
+import BoardShowContainer from "./boards/board_show_container";
+import CreateBoardContainer from "./boards/create_board_container";
+import EditBoardContainer from "./boards/edit_board_container";
 
 const App = () => (
     <div>
@@ -16,8 +19,10 @@ const App = () => (
         <NavBarContainer/>
         <ProtectedRoute exact path="/" component={PictureIndexContainer} />
         <ProtectedRoute exact path="/boards" component={BoardIndexContainer} /> 
-        <ProtectedRoute exact path="/boards/:boardId" component={BoardEditContainer} />
-        {/* <ProtectedRoute exace path="/boards/" */}
+        <ProtectedRoute exact path="/boards/:boardId" component={BoardShowContainer}/>
+        
+        <ProtectedRoute exact path="/boards/new" component={CreateBoardContainer}/>
+        <ProtectedRoute exact path="/boards/:boardId/edit" component={EditBoardContainer} />
         <Switch>
             <ProtectedRoute exact path="/pictures/:pictureId" component={PictureShowContainer} />
         

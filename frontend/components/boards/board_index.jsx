@@ -1,6 +1,6 @@
 import React from "react";
-// import {Link} from "react-router-dom";
-// import BoardNewContainer from "./board_new_container"
+import {Link} from "react-router-dom";
+import CreateBoardContainer from "./create_board_container"
 import BoardIndexItem from "./board_index_item";
 
 
@@ -16,6 +16,8 @@ class BoardIndex extends React.Component {
         // console.log(boards)
         return(
         <div>
+            <Link to="/boards/new">Create Board</Link>
+
             <ul>
                 {
                     boards.map (board => <BoardIndexItem
