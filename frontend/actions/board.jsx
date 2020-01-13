@@ -14,8 +14,9 @@ const receiveBoard = (payload) => ({
     payload
 })
 
-const removeBoard = () => ({
-    type: REMOVE_BOARD
+const removeBoard = (payload) => ({
+    type: REMOVE_BOARD,
+    payload
 })
 
 export const fetchBoards = () => dispatch => BoardUtil.requestBoards()
