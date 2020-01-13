@@ -2,6 +2,7 @@ import PictureShow from "./picture_show";
 import { connect } from "react-redux";
 import {requestPicture} from "../../actions/picture";
 import {fetchBoards} from "../../actions/board";
+import {addPin} from "../../actions/pin";
 
 const getBoards = (state) => {
     if (!state) return [];
@@ -28,9 +29,9 @@ const getBoards = (state) => {
 
 
 const mSTP = (state, ownProps) => {
-    // debugger;
-    console.log(state);
-    console.log(getBoards(state));
+    // // debugger;
+    // console.log(state);
+    // console.log(getBoards(state));
     return {
     picture: state.entities.pictures[ownProps.match.params.pictureId],
     boards: getBoards(state)
@@ -38,7 +39,8 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = dispatch => ({
     requestPicture: (pictureId) => dispatch(requestPicture(pictureId)),
-    fetchBoards: () => dispatch(fetchBoards())
+    fetchBoards: () => dispatch(fetchBoards()),
+    addPin: (boardId, pictureId) => dispatch(addPin(boardId, pictureId))
 })
 
 export default connect(mSTP, mDTP)(PictureShow);
