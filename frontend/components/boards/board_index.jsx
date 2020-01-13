@@ -13,6 +13,7 @@ class BoardIndex extends React.Component {
     render() {
         // const name = currentUser ? currentUser.email.split("@")[0].split(".")[0] : null
         const {boards} = this.props;
+        if (Object.keys(boards).length===0) return null;
         // console.log(boards)
         return(
         <div>

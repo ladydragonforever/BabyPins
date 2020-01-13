@@ -46,7 +46,7 @@ const NavBar = ({ currentUser, logout }) => {
                         Following
                     </div>
                 </NavLink>
-                <NavLink className="nav-profile" activeClassName="nav-active" to="/">
+                <NavLink className="nav-profile" activeClassName="nav-active" to="/profile">
                     <div>
                         <span className="nav-initial">{initial}</span>
                         <span className="nav-name">{name}</span>

@@ -34,18 +34,12 @@ class SessionForm extends React.Component {
     
         if (formType === "Sign up") {
              signUp(this.state)
-            //  this.props.history.push("/home")
-
 
         } else if (formType === "Log in") {
              login(this.state)
         }
     }
 
-    // componentDidMount() {
-    //     if (this.props.errors.length === 0) 
-       
-    // }
 
     componentWillUnmount(){
         this.props.clearErrors();
