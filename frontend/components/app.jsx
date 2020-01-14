@@ -25,6 +25,7 @@ const App = () => (
         <ProtectedRoute exact path="/profile/pins" component={ProfilePinContainer}/> 
         <ProtectedRoute exact path="/boards/new" component={CreateBoardContainer}/>
         <ProtectedRoute exact path="/boards/:boardId/edit" component={EditBoardContainer} />
+
         <Switch>
             <ProtectedRoute exact path="/pictures/:pictureId" component={PictureShowContainer} />
         

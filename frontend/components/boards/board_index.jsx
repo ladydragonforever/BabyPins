@@ -17,7 +17,7 @@ class BoardIndex extends React.Component {
         // console.log(boards)
         return(
         <div>
-            <Link to="/boards/new">Create Board</Link>
+            {/* <Link to="/boards/new">Create Board</Link> */}
 
             <ul>
                 {

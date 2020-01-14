@@ -10,8 +10,8 @@ class PictureIndex extends React.Component {
         const {pictures} = this.props;
         // console.log(pictures)
         return (
-            <div>
-                <ul>
+            <div className="picture-main">
+                <ul className="picture-list">
                     {
                          pictures.map(picture =>
                                                 <PictureIndexItem

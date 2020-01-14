@@ -22,7 +22,7 @@ const NavBar = ({ currentUser, logout }) => {
 //     </hgroup>
    
         const initial = currentUser ? currentUser.email[0] : null
-        const name = currentUser? currentUser.email.split("@")[0].split(".")[0] : null
+        const name = currentUser? currentUser.email.split("@")[0].split(".")[0]  : null
 
     return(
         // To change the routes for Following and initial
@@ -36,24 +36,24 @@ const NavBar = ({ currentUser, logout }) => {
 
             <div className="nav-section">
                 <div className="nav-home">
-                    <NavLink activeClassName="nav-active" to="/">
+                    <NavLink exact activeClassName="nav-active" to="/">
                             Home
                     </NavLink>
                 </div>
                
-                <NavLink className="nav-follow" activeClassName="nav-active" to="/">
+                <NavLink className="nav-follow" exact activeClassName="nav-active" to="/profile/pins">
                     <div >
                         Following
                     </div>
                 </NavLink>
-                <NavLink className="nav-profile" activeClassName="nav-active" to="/profile">
+                <NavLink className="nav-profile" exact activeClassName="nav-active" to="/profile">
                     <div>
                         <span className="nav-initial">{initial}</span>
                         <span className="nav-name">{name}</span>
                     </div>
                 </NavLink>
 
-                <NavLink className="nav-logout" activeClassName="nav-active" to="/" onClick={logout}>Logout</NavLink>
+                <NavLink className="nav-logout" to="/" onClick={logout}>Logout</NavLink>
             </div>
            
         </div>

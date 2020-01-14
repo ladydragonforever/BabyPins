@@ -1,0 +1,47 @@
+.profile-main {
+    display: block;
+    border-top: 1px solid $pinterest-gray;
+    margin-top: 7px;
+}
+
+.profile-create {
+    display: flex;
+    width: 67%;
+    margin: auto;
+    justify-content: flex-start; 
+    margin-top: 23px;
+}
+.profile-create-icon {
+    color: gray;
+    font-size: 26px;
+}
+
+.profile-create-text {
+    display: block;
+    text-align: center;
+    padding: 10px;
+}
+
+.profile-top {
+    display: flex;
+    width: 67%;
+    margin: auto;
+    justify-content: space-between;
+    margin-top: 23px;
+}
+
+.profile-name {
+    font-size: 40px;
+}
+
+.profile-photo {
+    background-image: image-url('profile.jpg');
+    height: 106px;
+    width: 106px;
+    background-size: cover; 
+    background-position: center; 
+    display: block;
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+

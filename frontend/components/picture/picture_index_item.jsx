@@ -5,9 +5,9 @@ const PictureIndexItem = ({picture}) => {
         // console.log(picture);
         // debugger;
         return(
-                <li>
+                <li className="picture-container">
                         <Link to={`/pictures/${picture.id}`}>
-                                <img src={picture.imageUrl} alt="" />
+                                <img className="picture-img" src={picture.imageUrl} alt="" />
                         </Link>
                 </li>
        
