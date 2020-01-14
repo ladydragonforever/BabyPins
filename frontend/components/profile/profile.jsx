@@ -31,20 +31,19 @@ class Profile extends React.Component {
                     <div className="profile-photo"> </div>
                 </div>
                 
-                <div className="profile-boards">
-                    <Link to="/profile/boards">
-                        Boards
+                <div className="profile-select">
+                    <div className="profile-boards">
+                        <Link to="/profile/boards">
+                            Boards
                     </Link>
-                </div>
-                <div className="profile-pins">
-                    <Link to="/profile/pins">
-                        Pins
+                    </div>
+                    <div className="profile-pins">
+                        <Link to="/profile/pins">
+                            Pins
                     </Link>
+                    </div>
                 </div>
-
-               
-
-               
+        
 
                 <div>
                     {component}

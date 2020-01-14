@@ -1,7 +1,9 @@
 .profile-main {
-    display: block;
+    display: flex;
     border-top: 1px solid $pinterest-gray;
     margin-top: 7px;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .profile-create {
@@ -45,3 +47,53 @@
     border-radius: 50%;
 }
 
+.profile-select {
+     display: flex;
+    width: 67%;
+    margin: auto;
+    justify-content: flex-start; 
+    margin-top: 23px;
+
+}
+.profile-boards {
+    display: inline-block;
+  
+    height: 18px;
+    width: 85px;
+    border: 10px solid white;
+    border-radius: 18px;
+    background-color: white;
+    font-family: $pinterest-font;
+    font-size: 18px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 11px;
+    color: gray;
+    text-align: center;
+}
+
+.profile-boards:hover {
+    border: 10px solid $pinterest-gray; 
+    background-color: $pinterest-gray;
+}
+.profile-pins {
+    display: block;
+ 
+    width: 85px;
+    height: 18px;
+    border: 10px solid white;
+    border-radius: 18px;
+    background-color: white;
+    font-family: $pinterest-font;
+    font-size: 18px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 11px;
+    color: gray;
+    text-align: center;
+}
+
+.profile-pins:hover {
+    border: 10px solid $pinterest-gray; 
+    background-color: $pinterest-gray;
+}

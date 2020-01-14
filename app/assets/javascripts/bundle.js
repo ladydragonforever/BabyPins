@@ -1750,6 +1750,8 @@ function (_React$Component) {
       }, name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photo"
       }, " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-select"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-boards"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/profile/boards"
@@ -1757,7 +1759,7 @@ function (_React$Component) {
         className: "profile-pins"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/profile/pins"
-      }, "Pins")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, component));
+      }, "Pins"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, component));
     }
   }]);
 
