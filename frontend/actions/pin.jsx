@@ -19,3 +19,4 @@ export const addPin = (boardId, pictureId) => dispatch => PinUtil.addPin(boardId
 
 export const deletePin = (boardId, id) => dispatch => PinUtil.deletePin(boardId,id)
 .then(() => dispatch(removePin(id)))
+

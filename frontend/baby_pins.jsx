@@ -22,5 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.getState = store.getState;
     window.dispatch = store.dispatch;
+    window.addPin = addPin;
     ReactDOM.render(<Root store={store} />, root);
 })

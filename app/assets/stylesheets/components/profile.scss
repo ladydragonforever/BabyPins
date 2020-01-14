@@ -1,9 +1,11 @@
 .profile-main {
+    position: relative;
     display: flex;
-    border-top: 1px solid $pinterest-gray;
+    // border-top: 1px solid $pinterest-gray;
     margin-top: 7px;
     flex-direction: column;
     justify-content: flex-start;
+    margin-top:64px;
 }
 
 .profile-create {

@@ -1,6 +1,5 @@
 import React from "react";
 import Select from "react-select";
-import {camelToSnakeCase} from "../../util/helper";
 
 class PictureShow extends React.Component{
 
@@ -46,7 +45,7 @@ class PictureShow extends React.Component{
     render(){
         const {selectedOption} = this.state;
         if (!this.props.picture) return null;
-        console.log(this.props.boards, selectedOption);
+        // console.log(this.props.boards, selectedOption);
         let hasBoards = this.props.boards !== undefined && this.props.boards.length !== 0;
         const options = !hasBoards ? [] :  this.props.boards.map((board) => ({value: board.id, label: board.title}))
 

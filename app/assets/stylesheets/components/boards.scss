@@ -1,0 +1,77 @@
+
+.board-container {
+    display: block;
+    width: 80%;;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+
+.board-item {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.board-items-container {
+    display: flex;
+    width: 242px;
+    // padding: 20px 12px;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+// .board-item-frame {
+//    width: 117px;
+//     height: 117px;
+//     margin: 2px; 
+//     overflow: hidden;
+// }
+.board-item-img {
+   
+    width: 117px;
+    height: 117px;
+    margin: 2px;
+}
+
+.board-item-img:first-child {
+    border-top-left-radius: 8px;
+}
+
+.board-item-img:nth-child(2) {
+    border-top-right-radius: 8px;
+}
+.board-item-img:nth-child(3) {
+    border-bottom-left-radius: 8px;
+}
+.board-item-img:nth-child(4) {
+    border-bottom-right-radius: 8px;
+}
+
+
+.board-items-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px 12px;
+    background-color: white;
+    border-radius: 8px;
+    
+}
+
+.board-items-main:hover {
+    background-color: $pinterest-gray;
+}
+
+
+.board-title {
+    font-size: 21px;
+    font-weight: bold;
+    padding-left: 20px
+}
+
+.board-count {
+    padding-left: 20px;
+    font-size: 14px;
+}

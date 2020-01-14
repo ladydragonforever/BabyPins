@@ -1,11 +1,11 @@
 
 export const addPin = (boardId, pictureId) => {
-    console.log(pictureId); 
+
     return $.ajax ({
         method: "post",
         url: `/api/boards/${boardId}/pins`,
-        data: {picture_id: pictureId}
-    }).then(res => console.log(res))
+        data: {pins: {picture_id:pictureId}}
+    })
 }
 
 export const deletePin = (boardId, id) => (

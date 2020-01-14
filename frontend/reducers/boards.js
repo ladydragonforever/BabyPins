@@ -11,9 +11,11 @@ const boardsReducer = (state={}, action) => {
         case REMOVE_BOARD:
             return {...state, [action.payload]: undefined};
         case RECEIVE_PIN:
-            let newState = {...state}
+            let newState = {...state};
+            let board = newState[action.payload.boardId];
+            if (!board) return state;
             let newPins = newState[action.payload.boardId].classifiedPictureIds.push(action.payload.pictureId)
-            return { ...state, [newState[action.payload.boardId].classifiedPictureIds]: newPins}    
+            return { ...state, [board.classifiedPictureIds]: newPins}    
         default: return state;
     }
 

@@ -5,7 +5,7 @@ const PictureIndexItem = ({picture}) => {
         // console.log(picture);
         // debugger;
         return(
-                <li className="picture-container">
+                <li className="tile">
                         <Link to={`/pictures/${picture.id}`}>
                                 <img className="picture-img" src={picture.imageUrl} alt="" />
                         </Link>

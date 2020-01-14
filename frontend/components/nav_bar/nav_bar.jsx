@@ -53,8 +53,8 @@ const NavBar = ({ currentUser, logout }) => {
                     </div>
                 </NavLink>
 
-                <NavLink className="nav-logout" to="/" onClick={logout}>Logout</NavLink>
             </div>
+                <NavLink className="nav-logout" to="/" onClick={logout}>Logout</NavLink>
            
         </div>
     );

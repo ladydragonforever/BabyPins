@@ -42,5 +42,5 @@ const mDTP = dispatch => ({
     fetchBoards: () => dispatch(fetchBoards()),
     addPin: (boardId, pictureId) => dispatch(addPin(boardId, pictureId))
 })
-
+window.addPin = addPin;
 export default connect(mSTP, mDTP)(PictureShow);
