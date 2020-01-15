@@ -21,8 +21,11 @@ class Profile extends React.Component {
         return(
             <div className="profile-main">
                 <div className="profile-create">
-                    <div className="profile-create-icon"><FontAwesomeIcon icon={faPlus} /></div>
-                    <Link className="profile-create-text" to="/boards/new">Create Board</Link>
+                    <div className="profile-create-icon" ><FontAwesomeIcon icon={faPlus} /></div>
+                    
+                    {this.props.otherForm}
+                    
+                    {/* <Link className="profile-create-text" to="/boards/new">Create Board</Link> */}
                 </div>
                 
                 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal';
 import { connect } from 'react-redux';
-import EditBoardContainer from '../boards/edit_board_container';
-import CreateBoardContainer from '../boards/create_board_container';
+import LoginFormContainer from '../session/login_form_container';
+import SignupFormContainer from '../session/signup_form_container';
 
 function Modal({ modal, closeModal }) {
     if (!modal) {
@@ -10,20 +10,21 @@ function Modal({ modal, closeModal }) {
     }
     let component;
     switch (modal) {
-        case 'Edit Board':   
-            component = <EditBoardContainer />;
+        case 'login':
+            component = <LoginFormContainer />;
             break;
-        case 'Create Board':
-            component = <CreateBoardContainer />;
+        case 'signup':
+            component = <SignupFormContainer />;
             break;
         default:
             return null;
     }
-    console.log(component);
     return (
-        <div className="modal-board-background" onClick={closeModal}>
-            <div className="modal-board-child" onClick={e => e.stopPropagation()}>
-                
+        <div className="modal-background" >
+            <div className="modal-imgcontainer">
+            </div>
+          
+            <div className="modal-child">
                 {component}
             </div>
         </div>

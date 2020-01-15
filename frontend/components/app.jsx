@@ -16,24 +16,25 @@ import EditBoardContainer from "./boards/edit_board_container";
 import ProfileBoardContainer from "./profile/profile_board_container";
 const App = () => (
     <div>
-        {/* <Modal/> */}
-        <NavBarContainer/>
-        <ProtectedRoute exact path="/" component={PictureIndexContainer} />
-        <ProtectedRoute exact path="/profile/boards" component={ProfileBoardContainer} />
-        <ProtectedRoute exact path="/profile" component={ProfileBoardContainer}/>
-        <ProtectedRoute exact path="/boards/:boardId" component={BoardShowContainer}/>
-        <ProtectedRoute exact path="/profile/pins" component={ProfilePinContainer}/> 
-        <ProtectedRoute exact path="/boards/new" component={CreateBoardContainer}/>
-        <ProtectedRoute exact path="/boards/:boardId/edit" component={EditBoardContainer} />
-
+        <Modal/>
         <Switch>
-            <ProtectedRoute exact path="/pictures/:pictureId" component={PictureShowContainer} />
         
             <AuthRoute path="/login" component={LoginFormContainer} />
             <AuthRoute path="/signup" component={SignUpFormContainer} />
             <AuthRoute exact path="/" component={Welcome}/>  
             {/* <Redirect to="/"/> */}
         </Switch>
+        <ProtectedRoute path="/" component={NavBarContainer}/>
+        <ProtectedRoute exact path="/" component={PictureIndexContainer} />
+        <ProtectedRoute exact path="/pictures/:pictureId" component={PictureShowContainer} />
+        <ProtectedRoute exact path="/profile/boards" component={ProfileBoardContainer} />
+        <ProtectedRoute exact path="/profile" component={ProfileBoardContainer}/>
+        <ProtectedRoute exact path="/boards/:boardId" component={BoardShowContainer}/>
+        <ProtectedRoute exact path="/profile/pins" component={ProfilePinContainer}/> 
+        {/* <ProtectedRoute exact path="/boards/new" component={CreateBoardContainer}/> */}
+        <ProtectedRoute exact path="/boards/:boardId/edit" component={EditBoardContainer} />
+
+        
     </div>
 
 )

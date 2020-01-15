@@ -4,6 +4,7 @@
     width: 80%;;
     margin: auto;
     box-sizing: border-box;
+    margin-top: 26px;
 }
 
 
@@ -74,4 +75,8 @@
 .board-count {
     padding-left: 20px;
     font-size: 14px;
+}
+.board-edit-icon {
+    color: gray;
+    font-size: 20px;
 }

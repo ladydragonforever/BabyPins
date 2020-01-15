@@ -1,13 +1,22 @@
 import BoardShow from "./board_show";
 import {connect} from "react-redux";
-import {fetchBoard, fetchBoards} from "../../actions/board";
+import {fetchBoard} from "../../actions/board";
+import React from "react";
+import { withRouter } from "react-router-dom";
+import { openModal, closeModal } from '../../actions/modal';
 
 const mSTP = (state, ownProps) => ({
     board: state.entities.boards[ownProps.match.params.boardId]
-})
+});
 
 const mDTP = dispatch => ({
-    fetchBoard: (boardId) => dispatch(fetchBoard(boardId))
-})
+    fetchBoard: (boardId) => dispatch(fetchBoard(boardId)),
+    otherForm: (
+        <button onClick={() => dispatch(openModal('Edit Board'))}>
+            Edit Board
+       </button>
+    ),
+    closeModal: () => dispatch(closeModal())
+});
 
-export default connect(mSTP,mDTP)(BoardShow)
+export default withRouter(connect(mSTP,mDTP)(BoardShow))

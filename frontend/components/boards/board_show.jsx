@@ -1,5 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Masonry from "../picture/masonry";
 
 class BoardShow extends React.Component {
 
@@ -9,24 +12,48 @@ class BoardShow extends React.Component {
     }
     render(){
         const {board} = this.props
+        let brakePoints = [350, 500, 750];
         if (!board) return null;
 
         const display = board && board.pictures
             ? (
-                <ul>
-                    {
-                        board.pictures.map(picUrl => <li key={Math.floor(Math.random() * 1000)}>
-                            <img src={picUrl} alt="" />
-                        </li>)
-                    }
-                </ul>
+                // <ul>
+                //     {
+                //         board.pictures.map(picUrl => <li key={Math.floor(Math.random() * 1000)}>
+                //             <img src={picUrl} alt="" />
+                //         </li>)
+                //     }
+                // </ul>
+                <div className="container" >
+                    <div className="masonry-container">
+                        <Masonry brakePoints={brakePoints}>
+                            {
+                                board.pictures.map(picUrl => <li 
+                                        className="tile"
+                                        key={Math.floor(Math.random() * 1000)}>
+                                        <img src={picUrl} alt="" />
+                                        </li>)
+                            }
+                        </Masonry>
+                    </div>
+                </div >
             )
             : (null)
 
         return(
-            <div>
-                <Link to={`/boards/${board.id}/edit`}>EditBoard</Link>
-                <h3>{board.title}</h3>
+            <div className="profile-main">
+                <div className="profile-create">
+                    <Link className="board-edit-icon" to={`/boards/${board.id}/edit`}><FontAwesomeIcon icon={faPen} /></Link>
+                    {this.props.otherForm}
+                    {/* <Link className="profile-create-text" to={`/boards/${board.id}/edit`}>Edit Board</Link> */}
+                </div>
+                
+                
+                <div className="profile-top">
+                    <h3 className="profile-name">{board.title}</h3>
+            
+                </div>
+               
                  {display}
 
             </div>

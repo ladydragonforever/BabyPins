@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import BoardForm from "./board_form";
 import {updateBoard, deleteBoard, fetchBoard} from "../../actions/board";
 import {withRouter} from "react-router-dom";
+import { openModal, closeModal } from '../../actions/modal';
 
 class EditForm extends React.Component {
     
@@ -39,7 +40,13 @@ const mSTP = (state, ownProps) => ({
 const mDTP = dispatch => ({
     action: (board) => dispatch(updateBoard(board)),
     deleteBoard: (boardId) => dispatch(deleteBoard(boardId)),
-    fetchBoard: (boardId) => dispatch(fetchBoard(boardId))
+    fetchBoard: (boardId) => dispatch(fetchBoard(boardId)),
+    otherForm: (
+        <button onClick={() => dispatch(openModal('Edit Board'))}>
+            Edit Board
+       </button>
+    ),
+    closeModal: () => dispatch(closeModal())
 })
 
 export default withRouter(connect(mSTP, mDTP)(EditForm));

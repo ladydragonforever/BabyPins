@@ -23,24 +23,30 @@ class BoardForm extends React.Component {
     
 
     render(){
-        const {title, description, formType} = this.state;
+        const {title, description} = this.state;
+        const {formType} = this.props;
 
-        const text = formType === "Create your board" ? "Creat" : "Save"
+        const text = formType === "Create your board" ? "Create" : "Save"
+        console.log(formType);
 
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <div>{formType}</div>
-                    <label>
-                        <div>Name</div>
-                        <input type="text" value={title} onChange={this.update("title")}/>
-                    </label>
-                     <label>
-                        <div>description</div>
-                    <textarea value={description} onChange={this.update("description")} />
-                    </label>
+                <form className="board-form-container" onSubmit={this.handleSubmit}>
+                    <div className="board-form-title">{formType}</div>
+                    <div className="board-form-name">
+                        <div className="board-form-column">Name</div>
+                        <input className="board-name-content" type="text" value={title} onChange={this.update("title")}/>
+                    </div>
+                     <div className="board-form-description">
+                        <div className="board-form-column">description</div>
+                    <textarea className="board-des-content" value={description} onChange={this.update("description")} />
+                    </div>
+                    <div className="board-form-button">
+                        <button className="board-form-button1">Cancel</button>
+                        <button className="board-form-button2">{text}</button>
+                    </div>
 
-                    <button>{text}</button>
+                   
                 </form>
             </div>
         )
