@@ -4,20 +4,29 @@ import {Link} from "react-router-dom";
 const BoardIndexItem = ({title, pinCount, board}) => {
     
     let i=0;
-    const display = board.fourPics 
-     ? (
-            <ul className="board-items-container">
+    let display = board.fourPics 
+    if (!display) return null;
+
+    while (display.length < 4) {display.push({});}
+     
+     
+    display = (<ul className="board-items-container">
                 {
                     // board.fourPics.map(picUrl => <li key={Math.floor(Math.random() * 1000)}>
                     //     < img className="board-item-img" src={picUrl} alt="" />
                     //                       </li>)
                    board.fourPics.map(picUrl => 
-                        < img className="board-item-img" src={picUrl} alt=""  key={i++}/>
-                                          )
+                    {
+                        // if (Object.keys(picUrl)===0) {
+                        //     return <div className="img-placeholder"> </div>
+                        // } else {
+                            return < img className="board-item-img" src={picUrl} alt=""  key={i++}/>
+                        // }
+                    }                      )
                 }
-            </ul>
-     ) 
-     : (null)
+             </ul>)
+    
+    
  
     return(
         <div className="board-items-main">

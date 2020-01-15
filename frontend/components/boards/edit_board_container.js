@@ -16,8 +16,10 @@ class EditForm extends React.Component {
     render(){
         const {board, formType, action, deleteBoard} = this.props;
         if (!board) return null;
+        console.log("test")
         return(
             <div>
+                
                 
                 <BoardForm
                 board={board}

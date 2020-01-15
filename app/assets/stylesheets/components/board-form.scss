@@ -15,31 +15,64 @@
     padding-top: 20px;
 }
 
-.board-form-column {
+.board-form-column1 {
     font-family: $pinterest-font;
     font-size: 16px;
     color: gray;
+    margin-left: 20px;
 }
-
+.board-form-column2 {
+    font-family: $pinterest-font;
+    font-size: 16px;
+    color: gray;
+    margin-left: 20px;
+}
 .board-form-name {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 25%;
-    padding-left: 15px;
+    font-size: 16px;
+    color: black;
+    margin-right: 20px;
+}
+
+.board-name-content {
+    display: block;
+    border: 1px solid gray;
+    height: 40px;
+    width: 70%;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.board-form-description {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 25%;
+    font-size: 16px;
+    color: black;
+    margin-right: 20px;;
 }
 
 .board-des-content {
-    resize: none;
+    // resize: none;
+    // display: block;
+    // border: 1px solid gray;
+    // height: 55px;
+    // width: 70%;
+    // border-radius: 5px;
+    // margin-right: 20px;
+    // padding-left: 10px;
+ display: block;
+    border: 1px solid gray;
+    height: 55px;
+    width: 70%;
+    border-radius: 5px;
+    padding-left: 10px;
 }
 
-
-.board-form-description {
-    display: block;
-    height: 25%;
-    padding-left: 15px;
-    
-}
 
 .board-form-button {
   display: flex;
@@ -57,7 +90,7 @@ font-size: 16px;
     font-weight: 500px;
     color: white;
     font-size: 16px;
-    height: 50px;
+    height: 45px;
     text-align: center;
     margin-right: 20px;
 }
@@ -71,7 +104,7 @@ font-size: 16px;
     font-weight: 500px;
     color: white;
     font-size: 16px;
-    height: 50px;
+    height: 45px;
     text-align: center;
     margin-right: 20px;
 }

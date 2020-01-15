@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {requestPicture} from "../../actions/picture";
 import {fetchBoards} from "../../actions/board";
 import {addPin} from "../../actions/pin";
+import {withRouter} from "react-router-dom";
 
 const getBoards = (state) => {
     if (!state) return [];
@@ -43,4 +44,4 @@ const mDTP = dispatch => ({
     addPin: (boardId, pictureId) => dispatch(addPin(boardId, pictureId))
 })
 window.addPin = addPin;
-export default connect(mSTP, mDTP)(PictureShow);
+export default withRouter(connect(mSTP, mDTP)(PictureShow));

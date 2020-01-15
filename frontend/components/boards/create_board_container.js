@@ -3,6 +3,7 @@ import {createBoard} from "../../actions/board";
 import { connect } from "react-redux";
 import { openModal, closeModal } from '../../actions/modal';
 import React from "react";
+import {withRouter} from "react-router-dom"
 
 const mSTP = state => ({
     board: {
@@ -24,4 +25,4 @@ const mDTP = dispatch => ({
     closeModal: () => dispatch(closeModal())
 })
 
-export default connect(mSTP, mDTP)(BoardForm);
+export default withRouter(connect(mSTP, mDTP)(BoardForm));

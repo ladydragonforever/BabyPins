@@ -16,6 +16,7 @@ class PictureShow extends React.Component{
         console.log(this.props);
         this.props.requestPicture(this.props.match.params.pictureId)
         this.props.fetchBoards();
+       
     }
 
     handleChange(selectedOption) {
@@ -40,6 +41,7 @@ class PictureShow extends React.Component{
         const { selectedOption } = this.state;
        
         addPin(selectedOption.value, picture.id);
+        this.props.history.push("/profile");
     }
 
     render(){

@@ -23,14 +23,14 @@
     flex-wrap: wrap;
 }
 
-// .board-item-frame {
-//    width: 117px;
-//     height: 117px;
-//     margin: 2px; 
-//     overflow: hidden;
-// }
+.image-placehoder {
+   width: 117px;
+    height: 117px;
+    margin: 2px; 
+    background-color: $pinterest-gray;
+}
 .board-item-img {
-   
+    background-color: $pinterest-gray;
     width: 117px;
     height: 117px;
     margin: 2px;
