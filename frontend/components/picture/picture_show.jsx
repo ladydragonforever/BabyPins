@@ -54,6 +54,7 @@ class PictureShow extends React.Component{
         let select = null;
         if(hasBoards){
                 select = <Select
+                    className="select"
                     options={options}
                     value={selectedOption}
                     onChange={this.handleChange}
@@ -61,6 +62,7 @@ class PictureShow extends React.Component{
                 />;
         } else {
                 select = <Select
+                    className="select"
                     options={options}
                     placeholder="No board to add to."
                     isDisabled={true}
@@ -71,13 +73,23 @@ class PictureShow extends React.Component{
 
         return(
 
-            <div>
-                <img src={this.props.picture.imageUrl} alt="" />
+            <div className="picture-show-main">
+                <div className="picture-container">
+                    <img className="picture-img" src={this.props.picture.imageUrl} alt="" />
+                </div>
+                
+                <div className="picture-add">
+                    <form className="picture-select" onSubmit={this.handleSubmit}>
+                        {select}
+                        <button className="picture-button"> Save</button>
+                    </form>
 
-                <form onSubmit={this.handleSubmit}>
-                {select}
-                <button> Save</button>
-                </form>
+                    <div className="picture-info">
+                        <div className="picture-title">{this.props.picture.title}</div>
+                        <div className="picture-title">{this.props.picture.description}</div>
+                    </div>
+                </div>
+               
             </div>
            
 

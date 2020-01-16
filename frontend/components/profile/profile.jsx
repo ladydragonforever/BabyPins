@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {NavLink, Link} from "react-router-dom";
 import BoardIndexContainer from "../boards/board_index_container";
 import PinIndexContainer from "../pins/pin_index_container";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +15,7 @@ class Profile extends React.Component {
 
         if (formType === "Boards") component = <BoardIndexContainer/>;
 
-        if (formType === "Pins") component = <PinIndexContainer/>
+        if (formType === "Pins") component = <PinIndexContainer/>;
 
         const name = currentUser? currentUser.email.split("@")[0].split(".")[0] : null
         return(
@@ -36,14 +36,18 @@ class Profile extends React.Component {
                 
                 <div className="profile-select">
                     <div className="profile-boards">
-                        <Link to="/profile/boards">
+                        <NavLink 
+                            activeClassName="profile-active-link"
+                        to="/profile/boards">
                             Boards
-                    </Link>
+                        </NavLink>
                     </div>
                     <div className="profile-pins">
-                        <Link to="/profile/pins">
+                        <NavLink 
+                            activeClassName="profile-active-link"
+                            to="/profile/pins">
                             Pins
-                    </Link>
+                        </NavLink>
                     </div>
                 </div>
         

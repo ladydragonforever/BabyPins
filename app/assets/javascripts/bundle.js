@@ -512,6 +512,10 @@ var App = function App() {
     exact: true,
     path: "/profile/pins",
     component: _profile_profile_pin_container__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
+    exact: true,
+    path: "/boards/:boardId/edit",
+    component: _boards_edit_board_container__WEBPACK_IMPORTED_MODULE_13__["default"]
   }));
 };
 
@@ -584,6 +588,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
+      console.log("testing my submit");
       this.props.action(this.state);
     } // componentDidUpdate() {
     //     this.props.closeModal();
@@ -604,8 +609,13 @@ function (_React$Component) {
           title = _this$state.title,
           description = _this$state.description;
       var formType = this.props.formType;
-      var text = formType === "Create your board" ? "Create" : "Save"; // console.log(formType);
-
+      var text = formType === "Create your board" ? "Create" : "Save";
+      var deleteButton = formType === "Edit your board" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "board-delete-button",
+        onClick: function onClick() {
+          return deleteBoard(board.id);
+        }
+      }, "Delete") : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "board-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -627,7 +637,7 @@ function (_React$Component) {
         className: "board-des-content",
         value: description,
         onChange: this.update("description")
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, deleteButton, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-form-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "board-form-button1",
@@ -635,9 +645,8 @@ function (_React$Component) {
         onClick: this.reset
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "board-form-button2",
-        type: "submit",
         onSubmit: this.handleSubmit
-      }, text))));
+      }, text)))));
     }
   }]);
 
@@ -876,6 +885,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _picture_masonry__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../picture/masonry */ "./frontend/components/picture/masonry.jsx");
+/* harmony import */ var _modal_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../modal/modal */ "./frontend/components/modal/modal.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -893,6 +903,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -919,6 +930,8 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       var board = this.props.board;
       var brakePoints = [350, 500, 750];
       if (!board) return null;
@@ -953,7 +966,13 @@ function (_React$Component) {
         to: "/boards/".concat(board.id, "/edit")
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"], {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faPen"]
-      })), this.props.otherForm), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this.props.openModal('Edit Board');
+        }
+      }, "Edit Board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        boardId: board.id
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-top"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "profile-name"
@@ -1002,11 +1021,14 @@ var mDTP = function mDTP(dispatch) {
     fetchBoard: function fetchBoard(boardId) {
       return dispatch(Object(_actions_board__WEBPACK_IMPORTED_MODULE_2__["fetchBoard"])(boardId));
     },
-    otherForm: react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
-      onClick: function onClick() {
-        return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_5__["openModal"])('Edit Board'));
-      }
-    }, "Edit Board"),
+    openModal: function openModal() {
+      return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_5__["openModal"])("Edit Board"));
+    },
+    // otherForm: (
+    //     <button onClick={() => dispatch(openModal('Edit Board'))}>
+    //         Edit Board
+    //    </button>
+    // // ),
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_5__["closeModal"])());
     }
@@ -1055,11 +1077,11 @@ var mDTP = function mDTP(dispatch) {
     action: function action(board) {
       return dispatch(Object(_actions_board__WEBPACK_IMPORTED_MODULE_1__["createBoard"])(board));
     },
-    otherForm: react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("button", {
-      onClick: function onClick() {
-        return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_3__["openModal"])('Create Board'));
-      }
-    }, "Create Board"),
+    // otherForm: (
+    //     <button onClick={() => dispatch(openModal('Create Board'))}>
+    //         Create Board
+    //    </button>
+    // ),
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
     }
@@ -1123,14 +1145,12 @@ function (_React$Component) {
   }
 
   _createClass(EditForm, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var board = this.props.board;
-      if (!board) return null;
-      this.props.fetchBoard(this.props.board.id);
-    }
-  }, {
     key: "render",
+    // componentDidMount(){
+    //     const {board} = this.props
+    //     if (!board) return null;
+    //     this.props.fetchBoard(this.props.match.params.boardId)
+    // }
     value: function render() {
       var _this$props = this.props,
           board = _this$props.board,
@@ -1138,16 +1158,12 @@ function (_React$Component) {
           action = _this$props.action,
           deleteBoard = _this$props.deleteBoard;
       if (!board) return null;
-      console.log("test");
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      console.log("I'm console log test");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, console.log("Hello I'm EditForm"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
         board: board,
         formType: formType,
         action: action
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: function onClick() {
-          return deleteBoard(board.id);
-        }
-      }, "Delete"));
+      }));
     }
   }]);
 
@@ -1155,6 +1171,7 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var mSTP = function mSTP(state, ownProps) {
+  console.log(state, ownProps, ownProps.match.params.boardId, "I'm in editform container");
   return {
     board: state.entities.boards[ownProps.match.params.boardId],
     formType: "Edit your board"
@@ -1172,11 +1189,6 @@ var mDTP = function mDTP(dispatch) {
     fetchBoard: function fetchBoard(boardId) {
       return dispatch(Object(_actions_board__WEBPACK_IMPORTED_MODULE_3__["fetchBoard"])(boardId));
     },
-    otherForm: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      onClick: function onClick() {
-        return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_5__["openModal"])('Edit Board'));
-      }
-    }, "Edit Board"),
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_5__["closeModal"])());
     }
@@ -1199,53 +1211,103 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/modal */ "./frontend/actions/modal.jsx");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _boards_edit_board_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../boards/edit_board_container */ "./frontend/components/boards/edit_board_container.js");
-/* harmony import */ var _boards_create_board_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../boards/create_board_container */ "./frontend/components/boards/create_board_container.js");
+/* harmony import */ var _actions_board__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/board */ "./frontend/actions/board.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _boards_edit_board_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../boards/edit_board_container */ "./frontend/components/boards/edit_board_container.js");
+/* harmony import */ var _boards_create_board_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../boards/create_board_container */ "./frontend/components/boards/create_board_container.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
 
 
 
-function Modal(_ref) {
-  var modal = _ref.modal,
-      closeModal = _ref.closeModal;
 
-  if (!modal) {
-    return null;
+
+var Modal =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Modal, _React$Component);
+
+  function Modal() {
+    _classCallCheck(this, Modal);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Modal).apply(this, arguments));
   }
 
-  var component;
-
-  switch (modal) {
-    case 'Edit Board':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_edit_board_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
-      break;
-
-    case 'Create Board':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_create_board_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
-      break;
-
-    default:
-      return null;
-  }
-
-  console.log(component);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-board-background",
-    onClick: closeModal
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-board-child",
-    onClick: function onClick(e) {
-      return e.stopPropagation();
+  _createClass(Modal, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchBoard(this.props.boardId);
     }
-  }, component));
-}
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          modal = _this$props.modal,
+          boardId = _this$props.boardId,
+          closeModal = _this$props.closeModal;
+
+      if (!modal) {
+        return null;
+      }
+
+      ;
+      var component;
+
+      switch (modal) {
+        case 'Edit Board':
+          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_edit_board_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            boardId: boardId
+          });
+          break;
+
+        case 'Create Board':
+          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_create_board_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+          break;
+
+        default:
+          return null;
+      }
+
+      ; // console.log(component);
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-board-background",
+        onClick: closeModal
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-board-child",
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        }
+      }, component));
+    }
+  }]);
+
+  return Modal;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
+  var boardId = state.ui.modal ? state.ui.modal.boardId : {};
   return {
-    modal: state.ui.modal
+    modal: state.ui.modal,
+    boardId: boardId
   };
 };
 
@@ -1253,11 +1315,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_1__["closeModal"])());
+    },
+    fetchBoard: function fetchBoard(boardId) {
+      return dispatch(Object(_actions_board__WEBPACK_IMPORTED_MODULE_2__["fetchBoard"])(boardId));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(Modal));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(Modal));
 
 /***/ }),
 
@@ -1774,6 +1839,7 @@ function (_React$Component) {
 
       if (hasBoards) {
         select = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          className: "select",
           options: options,
           value: selectedOption,
           onChange: this.handleChange,
@@ -1781,18 +1847,35 @@ function (_React$Component) {
         });
       } else {
         select = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          className: "select",
           options: options,
           placeholder: "No board to add to.",
           isDisabled: true
         });
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "picture-show-main"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "picture-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "picture-img",
         src: this.props.picture.imageUrl,
         alt: ""
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "picture-add"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "picture-select",
         onSubmit: this.handleSubmit
-      }, select, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, " Save")));
+      }, select, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "picture-button"
+      }, " Save")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "picture-info"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "picture-title"
+      }, this.props.picture.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "picture-title"
+      }, this.props.picture.description))));
     }
   }]);
 
@@ -2073,11 +2156,13 @@ function (_React$Component) {
         className: "profile-select"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-boards"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        activeClassName: "profile-active-link",
         to: "/profile/boards"
       }, "Boards")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-pins"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        activeClassName: "profile-active-link",
         to: "/profile/pins"
       }, "Pins"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, component));
     }
@@ -2664,10 +2749,18 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return modalReducer; });
 /* harmony import */ var _actions_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/modal */ "./frontend/actions/modal.jsx");
+/* harmony import */ var _actions_board__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/board */ "./frontend/actions/board.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function modalReducer() {
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var modalReducer = function modalReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
@@ -2678,10 +2771,17 @@ function modalReducer() {
     case _actions_modal__WEBPACK_IMPORTED_MODULE_0__["CLOSE_MODAL"]:
       return null;
 
+    case _actions_board__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
+      return _objectSpread({}, state, {
+        boardId: action.payload.id
+      });
+
     default:
       return state;
   }
-}
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (modalReducer);
 
 /***/ }),
 

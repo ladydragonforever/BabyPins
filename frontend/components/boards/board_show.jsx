@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Masonry from "../picture/masonry";
+import Modal from "../modal/modal";
 
 class BoardShow extends React.Component {
 
@@ -44,7 +45,12 @@ class BoardShow extends React.Component {
             <div className="profile-main">
                 <div className="profile-create">
                     <Link className="board-edit-icon" to={`/boards/${board.id}/edit`}><FontAwesomeIcon icon={faPen} /></Link>
-                    {this.props.otherForm}
+
+
+                    <button onClick={()=>this.props.openModal('Edit Board')}>
+                     Edit Board
+                    </button>
+                    <Modal boardId={board.id}/>
                     {/* <Link className="profile-create-text" to={`/boards/${board.id}/edit`}>Edit Board</Link> */}
                 </div>
                 

@@ -20,9 +20,9 @@ class BoardForm extends React.Component {
     
     handleSubmit(e){
         e.preventDefault();
+        console.log("testing my submit")
         this.props.action(this.state);
         
-       
     }
 
     // componentDidUpdate() {
@@ -41,8 +41,13 @@ class BoardForm extends React.Component {
         const {title, description} = this.state;
         const {formType} = this.props;
 
-        const text = formType === "Create your board" ? "Create" : "Save"
-        // console.log(formType);
+        const text = formType === "Create your board" ? "Create" : "Save" ;
+        const deleteButton = formType === "Edit your board"
+            ?
+            <button className="board-delete-button" onClick={() => deleteBoard(board.id)}>Delete</button>
+            : null
+
+        
 
         return(
             <div>
@@ -56,9 +61,14 @@ class BoardForm extends React.Component {
                         <div className="board-form-column2">Description</div>
                         <input className="board-des-content" value={description} onChange={this.update("description")} />
                     </div>
-                    <div className="board-form-button">
-                        <button className="board-form-button1" type="button" onClick={this.reset}>Cancel</button>
-                        <button className="board-form-button2" type="submit" onSubmit={this.handleSubmit}>{text}</button>
+                    <div >
+                        {deleteButton}
+                        <div className="board-form-button">
+                            <button className="board-form-button1" type="button" onClick={this.reset}>Cancel</button>
+                            <button className="board-form-button2" onSubmit={this.handleSubmit}>{text}</button>
+                        </div>
+                        
+                        
                     </div>
 
                    

@@ -20,6 +20,7 @@
     font-size: 26px;
 }
 
+
 .profile-create-text {
     display: block;
     text-align: center;
@@ -74,10 +75,15 @@
     text-align: center;
 }
 
-.profile-boards:hover {
-    border: 10px solid $pinterest-gray; 
-    background-color: $pinterest-gray;
-}
+// .profile-boards:hover {
+//      background-color: $pinterest-gray;
+//     border: 10px solid $pinterest-gray; 
+//     padding-top: 4px;
+//     padding-bottom: 4px;
+//     border-radius: 18px;
+// ;
+// }
+
 .profile-pins {
     display: block;
  
@@ -95,7 +101,17 @@
     text-align: center;
 }
 
-.profile-pins:hover {
-    border: 10px solid $pinterest-gray; 
+// .profile-pins:hover {
+//     border: 10px solid $pinterest-gray; 
+//     background-color: $pinterest-gray;
+// }
+
+.profile-active-link {
     background-color: $pinterest-gray;
+    border: 10px solid $pinterest-gray; 
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 18px;
+    
+
 }

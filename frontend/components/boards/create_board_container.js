@@ -17,11 +17,11 @@ const mSTP = state => ({
 
 const mDTP = dispatch => ({
     action: (board)=> dispatch(createBoard(board)),
-    otherForm: (
-        <button onClick={() => dispatch(openModal('Create Board'))}>
-            Create Board
-       </button>
-    ),
+    // otherForm: (
+    //     <button onClick={() => dispatch(openModal('Create Board'))}>
+    //         Create Board
+    //    </button>
+    // ),
     closeModal: () => dispatch(closeModal())
 })
 

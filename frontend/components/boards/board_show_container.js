@@ -11,11 +11,12 @@ const mSTP = (state, ownProps) => ({
 
 const mDTP = dispatch => ({
     fetchBoard: (boardId) => dispatch(fetchBoard(boardId)),
-    otherForm: (
-        <button onClick={() => dispatch(openModal('Edit Board'))}>
-            Edit Board
-       </button>
-    ),
+    openModal: () => dispatch(openModal("Edit Board")),
+    // otherForm: (
+    //     <button onClick={() => dispatch(openModal('Edit Board'))}>
+    //         Edit Board
+    //    </button>
+    // // ),
     closeModal: () => dispatch(closeModal())
 });
 

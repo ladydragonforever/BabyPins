@@ -32,7 +32,7 @@ const App = () => (
         <ProtectedRoute exact path="/boards/:boardId" component={BoardShowContainer}/>
         <ProtectedRoute exact path="/profile/pins" component={ProfilePinContainer}/> 
         {/* <ProtectedRoute exact path="/boards/new" component={CreateBoardContainer}/> */}
-        {/* <ProtectedRoute exact path="/boards/:boardId/edit" component={EditBoardContainer} /> */}
+        <ProtectedRoute exact path="/boards/:boardId/edit" component={EditBoardContainer} />
 
         
     </div>
