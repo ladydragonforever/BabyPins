@@ -862,7 +862,7 @@ var BoardIndexItem = function BoardIndexItem(_ref) {
   if (!display) return null;
 
   while (display.length < 4) {
-    display.push({});
+    display.push("");
   }
 
   display = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -1534,6 +1534,11 @@ function (_React$Component) {
       window.addEventListener('resize', this.onResize);
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.removeEventListener('resize', this.onResize);
+    }
+  }, {
     key: "getColumns",
     value: function getColumns(w) {
       return this.props.brakePoints.reduceRight(function (p, c, i) {
@@ -1543,6 +1548,7 @@ function (_React$Component) {
   }, {
     key: "onResize",
     value: function onResize() {
+      // console.log(this.refs.Masonry, this.refs)
       var columns = this.getColumns(this.refs.Masonry.offsetWidth);
 
       if (columns !== this.state.columns) {
@@ -1617,9 +1623,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1635,10 +1641,18 @@ var PictureIndex =
 function (_React$Component) {
   _inherits(PictureIndex, _React$Component);
 
-  function PictureIndex() {
+  function PictureIndex(props) {
+    var _this;
+
     _classCallCheck(this, PictureIndex);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(PictureIndex).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PictureIndex).call(this, props));
+    _this.state = {
+      num_loaded: 0,
+      num_total: 54
+    };
+    _this.onImageLoaded = _this.onImageLoaded.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(PictureIndex, [{
@@ -1647,11 +1661,22 @@ function (_React$Component) {
       this.props.requestPictures();
     }
   }, {
+    key: "onImageLoaded",
+    value: function onImageLoaded() {
+      //https://www.javascriptstuff.com/detect-image-load/
+      this.setState({
+        num_loaded: this.state.num_loaded + 1
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var pictures = this.props.pictures;
       var brakePoints = [350, 500, 750];
-      var display = pictures.length === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      var needDisplayLoading = this.state.num_loaded < this.state.num_total;
+      var display = needDisplayLoading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "loader-word"
@@ -1663,7 +1688,19 @@ function (_React$Component) {
         width: 50,
         timeout: 3000 //3 secs
 
-      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "hidden-me",
+        hidden: true
+      }, pictures.map(function (picture) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "picture-img",
+          src: picture.imageUrl,
+          alt: "",
+          onLoad: _this2.onImageLoaded,
+          onError: _this2.onImageLoaded,
+          key: picture.id
+        });
+      }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "masonry-container"
@@ -3079,6 +3116,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBoard", function() { return updateBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBoard", function() { return deleteBoard; });
 var requestBoards = function requestBoards() {
+  console.log("we are here");
   return $.ajax({
     method: "get",
     url: "/api/boards"

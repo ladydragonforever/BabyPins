@@ -12,6 +12,11 @@ class Masonry extends React.Component {
         this.onResize();
         window.addEventListener('resize', this.onResize)
     }
+    
+    componentWillUnmount(){
+        window.removeEventListener('resize', this.onResize)
+    }
+
 
     getColumns(w) {
         return this.props.brakePoints.reduceRight((p, c, i) => {
@@ -20,7 +25,9 @@ class Masonry extends React.Component {
     }
 
     onResize() {
+        // console.log(this.refs.Masonry, this.refs)
         const columns = this.getColumns(this.refs.Masonry.offsetWidth);
+
         if (columns !== this.state.columns) {
             this.setState({ columns: columns });
         }

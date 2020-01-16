@@ -5,15 +5,31 @@ import Loader from "react-loader-spinner";
 
 
 class PictureIndex extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {num_loaded: 0, num_total: 54};
+
+        this.onImageLoaded = this.onImageLoaded.bind(this);
+    }
     
     componentDidMount(){
         this.props.requestPictures();
+
     }
+
+    onImageLoaded(){
+        //https://www.javascriptstuff.com/detect-image-load/
+        this.setState({num_loaded: this.state.num_loaded+1});
+
+    }
+
     render(){
         const {pictures} = this.props;
+
         let brakePoints = [350, 500, 750];
 
-        const display = pictures.length === 0 
+        let needDisplayLoading = this.state.num_loaded < this.state.num_total;
+        const display = needDisplayLoading
             ? 
             <div className="container">
                 <h3 className="loader-word">We are adding pictures to your feed!</h3>
@@ -26,6 +42,17 @@ class PictureIndex extends React.Component {
                     timeout={3000} //3 secs
 
                 /> 
+                <div className="hidden-me" hidden>
+                        {pictures.map(picture =>
+                <img className="picture-img" src={picture.imageUrl} alt="" 
+                onLoad={this.onImageLoaded}
+            
+                onError={this.onImageLoaded}
+                                key={picture.id}
+                />
+                        )}
+
+                </div>
             </div>
            
             : <div className="container" >

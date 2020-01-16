@@ -7,7 +7,7 @@ const BoardIndexItem = ({title, pinCount, board}) => {
     let display = board.fourPics 
     if (!display) return null;
 
-    while (display.length < 4) {display.push({});}
+    while (display.length < 4) {display.push("");}
      
      
     display = (<ul className="board-items-container">
@@ -20,7 +20,7 @@ const BoardIndexItem = ({title, pinCount, board}) => {
                         // if (Object.keys(picUrl)===0) {
                         //     return <div className="img-placeholder"> </div>
                         // } else {
-                            return < img className="board-item-img" src={picUrl} alt=""  key={i++}/>
+                            return <img className="board-item-img" src={picUrl} alt=""  key={i++}/>
                         // }
                     }                      )
                 }

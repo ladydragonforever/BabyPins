@@ -1,9 +1,10 @@
-export const requestBoards = () => (
-    $.ajax({
+export const requestBoards = () => { 
+    console.log("we are here");
+    return $.ajax({
         method: "get",
-        url: "/api/boards"
-    })
-)
+        url: "/api/boards",
+    });
+}
 
 export const requestBoard = (boardId) => (
     $.ajax({
