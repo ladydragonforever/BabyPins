@@ -1,12 +1,15 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import { faWindowRestore } from "@fortawesome/free-solid-svg-icons";
 
 class BoardForm extends React.Component {
     constructor(props){
         super(props);
+        console.log("BoardFrom props", this.props);
         this.state = this.props.board;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.reset = this.reset.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     update(type){
@@ -21,8 +24,28 @@ class BoardForm extends React.Component {
     handleSubmit(e){
         e.preventDefault();
         console.log("testing my submit")
-        this.props.action(this.state);
+        this.props.action(this.state)
+            .then(this.props.closeModal)
+            .then(()=>this.props.history.push("/profile/boards"))
+            .then(()=>this.props.history.push("/profile"));
         
+        /*.then(
+            ()=> this.history.push("/profile")
+        );*/
+    }
+
+    handleDelete(e){
+        e.preventDefault();
+        console.log(this.props.history);
+        this.props.deleteBoard(this.props.board.id)
+            .then(this.props.closeModal)
+            .then(()=>this.props.history.push("/profile/boards"));
+
+        
+        /*.then(
+            () => this.props.history.push("/profile")
+        );
+        */
     }
 
     // componentDidUpdate() {
@@ -44,7 +67,10 @@ class BoardForm extends React.Component {
         const text = formType === "Create your board" ? "Create" : "Save" ;
         const deleteButton = formType === "Edit your board"
             ?
-            <button className="board-delete-button" onClick={() => deleteBoard(board.id)}>Delete</button>
+            <button className="board-delete-button" 
+                onClick={this.handleDelete} >
+                Delete
+            </button>
             : null
 
         
@@ -65,7 +91,7 @@ class BoardForm extends React.Component {
                         {deleteButton}
                         <div className="board-form-button">
                             <button className="board-form-button1" type="button" onClick={this.reset}>Cancel</button>
-                            <button className="board-form-button2" onSubmit={this.handleSubmit}>{text}</button>
+                            <button className="board-form-button2" onClick={this.handleSubmit}>{text}</button>
                         </div>
                         
                         

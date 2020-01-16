@@ -1,5 +1,5 @@
 import { RECEIVE_CURRENT_USER } from "../actions/session";
-import { REMOVE_BOARD } from "../actions/board";
+import { REMOVE_BOARD, RECEIVE_BOARD } from "../actions/board";
 
 const usersReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -14,7 +14,20 @@ const usersReducer = (state = {}, action) => {
                 newUsers[curUserId] = {...state[curUserId], boardIds: curBoardIds}
             })
             return newUsers;
-            
+        case RECEIVE_BOARD:
+            //users.1.boardId[]
+            let newUsersC = {};
+            Object.keys(state).map( (curUserId) => { 
+                let curList = state[curUserId].boardIds;
+                let needAdding = curList.indexOf(action.payload.id) <= -1;
+                if(needAdding){
+                    curList = curList.concat([action.payload.id]);
+                }
+
+                newUsersC[curUserId] = {...state[curUserId], boardIds: curList}
+            })
+            return newUsersC;
+        
         default: return state;
     }
 

@@ -16,7 +16,7 @@ import EditBoardContainer from "./boards/edit_board_container";
 import ProfileBoardContainer from "./profile/profile_board_container";
 const App = () => (
     <div>
-        <Modal/>
+        <Modal><CreateBoardContainer /></Modal>
         <Switch>
         
             <AuthRoute path="/login" component={LoginFormContainer} />

@@ -16,15 +16,18 @@ class EditForm extends React.Component {
     render(){
         const {board, formType, action, deleteBoard} = this.props;
         if (!board) return null;
-        console.log("I'm console log test")
+        // console.log("I'm console log test")
         return(
             <div>
-                {console.log("Hello I'm EditForm")}
+                {/* {console.log("Hello I'm EditForm")} */}
                 
+
                 <BoardForm
+                {...this.props}
                 board={board}
                 formType={formType}
-                action={action}/>
+                action={action}
+                deleteBoard={deleteBoard}/>
 
             </div>
         )
@@ -48,5 +51,6 @@ const mDTP = dispatch => ({
     closeModal: () => dispatch(closeModal())
 })
 
-export default withRouter(connect(mSTP, mDTP)(EditForm));
+//export default withRouter(connect(mSTP, mDTP)(EditForm));
+export default withRouter(connect(mSTP, mDTP)(BoardForm));
 

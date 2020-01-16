@@ -4,6 +4,7 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Masonry from "../picture/masonry";
 import Modal from "../modal/modal";
+import EditBoardContainer from '../boards/edit_board_container';
 
 class BoardShow extends React.Component {
 
@@ -50,7 +51,9 @@ class BoardShow extends React.Component {
                     <button onClick={()=>this.props.openModal('Edit Board')}>
                      Edit Board
                     </button>
-                    <Modal boardId={board.id}/>
+                    <Modal boardId={board.id}>
+                        <EditBoardContainer boardId={board.id} />
+                    </Modal>
                     {/* <Link className="profile-create-text" to={`/boards/${board.id}/edit`}>Edit Board</Link> */}
                 </div>
                 

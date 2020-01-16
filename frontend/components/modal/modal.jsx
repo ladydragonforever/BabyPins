@@ -4,12 +4,15 @@ import {fetchBoard} from "../../actions/board";
 import { connect } from 'react-redux';
 import EditBoardContainer from '../boards/edit_board_container';
 import CreateBoardContainer from '../boards/create_board_container';
+import {withRouter} from "react-router-dom";
 
 class Modal extends React.Component {
     
-    componentDidMount(){
-        this.props.fetchBoard(this.props.boardId);
-    }
+    //componentDidMount(){
+        //console.log(this.props.boardId, "this is boardId in modal")
+        //if (Object.keys(this.props.boardId).length===0) return null;
+        //this.props.fetchBoard(this.props.boardId);
+    //}
     render () {
     const { modal, boardId, closeModal} = this.props;
     if (!modal) {
@@ -18,10 +21,10 @@ class Modal extends React.Component {
     let component;
     switch (modal) {
         case 'Edit Board':
-            component = <EditBoardContainer boardId={boardId} />;
+            component = this.props.children;
             break;
         case 'Create Board':
-            component = <CreateBoardContainer />;
+            component = this.props.children;
             break;
         default:
             return null;
@@ -52,4 +55,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Modal));

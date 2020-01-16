@@ -7,8 +7,8 @@ const modalReducer= (state = null, action) => {
             return action.modal;
         case CLOSE_MODAL:
             return null;
-        case RECEIVE_BOARD:
-            return { ...state, boardId: action.payload.id};    
+        //case RECEIVE_BOARD:
+        //   return { ...state, boardId: action.payload.id};    
         default:
             return state;
     }
