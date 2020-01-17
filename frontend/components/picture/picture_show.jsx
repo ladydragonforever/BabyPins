@@ -40,8 +40,8 @@ class PictureShow extends React.Component{
         const { picture, addPin } = this.props;
         const { selectedOption } = this.state;
        
-        addPin(selectedOption.value, picture.id);
-        this.props.history.push("/profile");
+        addPin(selectedOption.value, picture.id).then(()=>
+        this.props.history.push("/profile"));
     }
 
     render(){

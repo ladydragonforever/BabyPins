@@ -12,14 +12,12 @@ class Api::PinsController < ApplicationController
     end
 
     def destroy
-        
         @board = Board.find(params[:board_id])
-
         if current_user.id != @board.user_id
             render json: ["Unauthorized user!"]
         end
 
-        @pin = Pin.find(params[:id])
+        @pin = Pin.find_by(board_id: params[:board_id], picture_id: params[:picture_id])
         
         if @pin
             @pin.destroy 

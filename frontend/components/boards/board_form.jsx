@@ -41,17 +41,8 @@ class BoardForm extends React.Component {
             .then(this.props.closeModal)
             .then(()=>this.props.history.push("/profile/boards"));
 
-        
-        /*.then(
-            () => this.props.history.push("/profile")
-        );
-        */
     }
 
-    // componentDidUpdate() {
-    //     this.props.closeModal();
-    //     this.props.history.push("/profile/boards")
-    // }
 
     reset() {
         // console.log("test");
@@ -72,8 +63,20 @@ class BoardForm extends React.Component {
                 Delete
             </button>
             : null
-
         
+        let submitButton = null;
+        if (title.length !== 0) {
+        submitButton = (<button className="board-form-button2" 
+                                onClick={this.handleSubmit}>
+                                {text}
+                                </button>);
+        
+        }else{ 
+        submitButton = (<button className="board-form-button2" 
+                                disabled>
+                                {text}
+                                </button>);
+        }
 
         return(
             <div>
@@ -91,7 +94,7 @@ class BoardForm extends React.Component {
                         {deleteButton}
                         <div className="board-form-button">
                             <button className="board-form-button1" type="button" onClick={this.reset}>Cancel</button>
-                            <button className="board-form-button2" onClick={this.handleSubmit}>{text}</button>
+                            {submitButton}
                         </div>
                         
                         

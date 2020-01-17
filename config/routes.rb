@@ -7,11 +7,15 @@ Rails.application.routes.draw do
   namespace :api, defaults:{format: :json} do
     resources :users
     resources :boards do
-      resources :pins, only: [:create, :destroy]
+      resources :pins, only: [:create]
     end
 
     resource :session, only: [:create, :destroy]
     resources :pictures, only: [:index, :show]
     
+    delete "/:board_id/:picture_id", to: 'pins#destroy'
+    
   end
+
+  
 end

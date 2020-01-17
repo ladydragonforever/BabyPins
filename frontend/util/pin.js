@@ -8,9 +8,9 @@ export const addPin = (boardId, pictureId) => {
     })
 }
 
-export const deletePin = (boardId, id) => (
+export const deletePin = (boardId, pictureId) => (
     $.ajax ({
         method: "delete",
-        url: `/api/boards/${boardId}/pins/${id}`,
+        url: `/api/${boardId}/${pictureId}`,
     })
 )

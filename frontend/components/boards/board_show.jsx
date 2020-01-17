@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Masonry from "../picture/masonry";
 import Modal from "../modal/modal";
 import EditBoardContainer from '../boards/edit_board_container';
@@ -30,10 +31,12 @@ class BoardShow extends React.Component {
                     <div className="masonry-container">
                         <Masonry brakePoints={brakePoints}>
                             {
-                                board.pictures.map(picUrl => <li 
+                                board.pictures.map(pic => <li 
                                         className="tile"
                                         key={Math.floor(Math.random() * 1000)}>
-                                        <img src={picUrl} alt="" />
+                                        <img src={pic.url} alt="" />
+                                        <FontAwesomeIcon icon={faTrashAlt} 
+                                        onClick={() => this.props.deletePin(this.props.match.params.boardId, pic.id)}/>
                                         </li>)
                             }
                         </Masonry>
@@ -45,9 +48,7 @@ class BoardShow extends React.Component {
         return(
             <div className="profile-main">
                 <div className="profile-create">
-                    <Link className="board-edit-icon" to={`/boards/${board.id}/edit`}><FontAwesomeIcon icon={faPen} /></Link>
-
-
+                    <FontAwesomeIcon icon={faPen} />
                     <button onClick={()=>this.props.openModal('Edit Board')}>
                      Edit Board
                     </button>

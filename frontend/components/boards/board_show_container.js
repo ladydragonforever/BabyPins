@@ -1,9 +1,9 @@
 import BoardShow from "./board_show";
 import {connect} from "react-redux";
 import {fetchBoard} from "../../actions/board";
-import React from "react";
 import { withRouter } from "react-router-dom";
 import { openModal, closeModal } from '../../actions/modal';
+import {deletePin} from "../../actions/pin";
 
 const mSTP = (state, ownProps) => ({
     board: state.entities.boards[ownProps.match.params.boardId]
@@ -17,7 +17,8 @@ const mDTP = dispatch => ({
     //         Edit Board
     //    </button>
     // // ),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    deletePin: (boardId, pictureId)=> dispatch(deletePin(boardId, pictureId))
 });
 
 export default withRouter(connect(mSTP,mDTP)(BoardShow))

@@ -292,10 +292,13 @@ var addPin = function addPin(boardId, pictureId) {
     });
   };
 };
-var deletePin = function deletePin(boardId, id) {
+var deletePin = function deletePin(boardId, pictureId) {
   return function (dispatch) {
-    return _util_pin__WEBPACK_IMPORTED_MODULE_0__["deletePin"](boardId, id).then(function () {
-      return dispatch(removePin(id));
+    return _util_pin__WEBPACK_IMPORTED_MODULE_0__["deletePin"](boardId, pictureId).then(function () {
+      return dispatch(removePin({
+        boardId: boardId,
+        pictureId: pictureId
+      }));
     });
   };
 };
@@ -424,7 +427,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.getState = store.getState;
   window.dispatch = store.dispatch;
-  window.addPin = addPin;
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
   }), root);
@@ -614,15 +616,7 @@ function (_React$Component) {
       this.props.deleteBoard(this.props.board.id).then(this.props.closeModal).then(function () {
         return _this4.props.history.push("/profile/boards");
       });
-      /*.then(
-          () => this.props.history.push("/profile")
-      );
-      */
-    } // componentDidUpdate() {
-    //     this.props.closeModal();
-    //     this.props.history.push("/profile/boards")
-    // }
-
+    }
   }, {
     key: "reset",
     value: function reset() {
@@ -642,6 +636,20 @@ function (_React$Component) {
         className: "board-delete-button",
         onClick: this.handleDelete
       }, "Delete") : null;
+      var submitButton = null;
+
+      if (title.length !== 0) {
+        submitButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "board-form-button2",
+          onClick: this.handleSubmit
+        }, text);
+      } else {
+        submitButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "board-form-button2",
+          disabled: true
+        }, text);
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "board-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -669,10 +677,7 @@ function (_React$Component) {
         className: "board-form-button1",
         type: "button",
         onClick: this.reset
-      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "board-form-button2",
-        onClick: this.handleSubmit
-      }, text)))));
+      }, "Cancel"), submitButton))));
     }
   }]);
 
@@ -751,12 +756,12 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-item"
       }, boards.map(function (board) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        return board ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
           key: board.id,
           title: board.title,
           board: board,
           pinCount: board.classifiedPicIds.length
-        });
+        }) : null;
       }))) // <div className="container" >
       //     <div className="masonry-container">
       //         <Masonry brakePoints={brakePoints}>
@@ -939,6 +944,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var BoardShow =
 /*#__PURE__*/
 function (_React$Component) {
@@ -976,25 +982,27 @@ function (_React$Component) {
         className: "masonry-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_masonry__WEBPACK_IMPORTED_MODULE_4__["default"], {
         brakePoints: brakePoints
-      }, board.pictures.map(function (picUrl) {
+      }, board.pictures.map(function (pic) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "tile",
           key: Math.floor(Math.random() * 1000)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: picUrl,
+          src: pic.url,
           alt: ""
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"], {
+          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faTrashAlt"],
+          onClick: function onClick() {
+            return _this.props.deletePin(_this.props.match.params.boardId, pic.id);
+          }
         }));
       })))) : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-create"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        className: "board-edit-icon",
-        to: "/boards/".concat(board.id, "/edit")
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"], {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faPen"]
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this.props.openModal('Edit Board');
         }
@@ -1029,10 +1037,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _board_show__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./board_show */ "./frontend/components/boards/board_show.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_board__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/board */ "./frontend/actions/board.jsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _actions_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/modal */ "./frontend/actions/modal.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal */ "./frontend/actions/modal.jsx");
+/* harmony import */ var _actions_pin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/pin */ "./frontend/actions/pin.jsx");
 
 
 
@@ -1052,7 +1059,7 @@ var mDTP = function mDTP(dispatch) {
       return dispatch(Object(_actions_board__WEBPACK_IMPORTED_MODULE_2__["fetchBoard"])(boardId));
     },
     openModal: function openModal() {
-      return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_5__["openModal"])("Edit Board"));
+      return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_4__["openModal"])("Edit Board"));
     },
     // otherForm: (
     //     <button onClick={() => dispatch(openModal('Edit Board'))}>
@@ -1060,12 +1067,15 @@ var mDTP = function mDTP(dispatch) {
     //    </button>
     // // ),
     closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_5__["closeModal"])());
+      return dispatch(Object(_actions_modal__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
+    },
+    deletePin: function deletePin(boardId, pictureId) {
+      return dispatch(Object(_actions_pin__WEBPACK_IMPORTED_MODULE_5__["deletePin"])(boardId, pictureId));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_board_show__WEBPACK_IMPORTED_MODULE_0__["default"])));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_board_show__WEBPACK_IMPORTED_MODULE_0__["default"])));
 
 /***/ }),
 
@@ -1649,7 +1659,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PictureIndex).call(this, props));
     _this.state = {
       num_loaded: 0,
-      num_total: 54
+      num_total: 50
     };
     _this.onImageLoaded = _this.onImageLoaded.bind(_assertThisInitialized(_this));
     return _this;
@@ -1664,6 +1674,7 @@ function (_React$Component) {
     key: "onImageLoaded",
     value: function onImageLoaded() {
       //https://www.javascriptstuff.com/detect-image-load/
+      // https://www.javascriptstuff.com/react-image-gallery/
       this.setState({
         num_loaded: this.state.num_loaded + 1
       });
@@ -1686,20 +1697,20 @@ function (_React$Component) {
         color: "#e60023",
         height: 50,
         width: 50,
-        timeout: 3000 //3 secs
+        timeout: 50000 //3 secs
 
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "hidden-me",
         hidden: true
       }, pictures.map(function (picture) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        return picture ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "picture-img",
           src: picture.imageUrl,
           alt: "",
           onLoad: _this2.onImageLoaded,
           onError: _this2.onImageLoaded,
           key: picture.id
-        });
+        }) : null;
       }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1885,13 +1896,16 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
       var _this$props = this.props,
           picture = _this$props.picture,
           addPin = _this$props.addPin;
       var selectedOption = this.state.selectedOption;
-      addPin(selectedOption.value, picture.id);
-      this.props.history.push("/profile");
+      addPin(selectedOption.value, picture.id).then(function () {
+        return _this3.props.history.push("/profile");
+      });
     }
   }, {
     key: "render",
@@ -2017,9 +2031,9 @@ var mDTP = function mDTP(dispatch) {
       return dispatch(Object(_actions_pin__WEBPACK_IMPORTED_MODULE_4__["addPin"])(boardId, pictureId));
     }
   };
-};
+}; // window.addPin = addPin;
 
-window.addPin = _actions_pin__WEBPACK_IMPORTED_MODULE_4__["addPin"];
+
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_picture_show__WEBPACK_IMPORTED_MODULE_0__["default"])));
 
 /***/ }),
@@ -2070,11 +2084,18 @@ function (_React$Component) {
 
   _createClass(PinIndex, [{
     key: "render",
+    // constructor(props){
+    //     super(props)
+    // this.handleDelete = this.handleDelete.bind(this);    
+    // }
+    // handleDelete() {
+    // }
     value: function render() {
       var pins = this.props.pins;
       var brakePoints = [350, 500, 750];
       if (pins.length === 0) return null;
       var i = 0;
+      console.log(this.props);
       return (// <ul>
         //     {
         //         pins.map(picUrl => 
@@ -2090,12 +2111,12 @@ function (_React$Component) {
           className: "masonry-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_masonry__WEBPACK_IMPORTED_MODULE_1__["default"], {
           brakePoints: brakePoints
-        }, pins.map(function (picUrl) {
+        }, pins.map(function (pic) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "tile ",
             key: i++
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-            src: picUrl,
+            src: pic.url,
             alt: ""
           }));
         }))))
@@ -2121,6 +2142,8 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pin_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pin_index */ "./frontend/components/pins/pin_index.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
@@ -2136,14 +2159,14 @@ var mSTP = function mSTP(state) {
   if (curUser === undefined) return {
     pins: {}
   };
-  var pins = curUser.pinnedPics || [];
-  console.log(curUser, curUser.pinnedPics);
+  var pins = curUser.pinnedPics || []; // console.log(curUser, curUser.pinnedPics)
+
   return {
     pins: pins
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, undefined)(_pin_index__WEBPACK_IMPORTED_MODULE_0__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, undefined)(_pin_index__WEBPACK_IMPORTED_MODULE_0__["default"])));
 
 /***/ }),
 
@@ -2753,8 +2776,32 @@ var boardsReducer = function boardsReducer() {
 
       var board = newState[action.payload.boardId];
       if (!board) return state;
-      var newPins = newState[action.payload.boardId].classifiedPictureIds.push(action.payload.pictureId);
-      return _objectSpread({}, state, _defineProperty({}, board.classifiedPictureIds, newPins));
+      var newPins = board.classifiedPicIds.concat([action.payload.pictureId]);
+
+      var newBoard = _objectSpread({}, board, {
+        classifiedPicIds: newPins
+      });
+
+      return _objectSpread({}, state, _defineProperty({}, action.payload.boardId, newBoard));
+
+    case _actions_pin__WEBPACK_IMPORTED_MODULE_1__["REMOVE_PIN"]:
+      var newState1 = _objectSpread({}, state);
+
+      var board1 = newState1[action.payload.boardId];
+      if (!board1) return state;
+      var newPins1 = board1.classifiedPicIds.filter(function (el) {
+        return el != action.payload.pictureId;
+      });
+      var newPictures1 = board1.pictures.filter(function (el) {
+        return el.id != action.payload.pictureId;
+      });
+
+      var newBoard1 = _objectSpread({}, board1, {
+        classifiedPicIds: newPins1,
+        pictures: newPictures1
+      });
+
+      return _objectSpread({}, state, _defineProperty({}, action.payload.boardId, newBoard1));
 
     default:
       return state;
@@ -3203,10 +3250,10 @@ var addPin = function addPin(boardId, pictureId) {
     }
   });
 };
-var deletePin = function deletePin(boardId, id) {
+var deletePin = function deletePin(boardId, pictureId) {
   return $.ajax({
     method: "delete",
-    url: "/api/boards/".concat(boardId, "/pins/").concat(id)
+    url: "/api/".concat(boardId, "/").concat(pictureId)
   });
 };
 

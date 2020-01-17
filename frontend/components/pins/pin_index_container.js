@@ -1,5 +1,6 @@
 import PinIndex from "./pin_index";
-import { connect } from "react-redux";
+import { connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 const mSTP = state => {
 
@@ -14,9 +15,9 @@ const mSTP = state => {
     if (curUser === undefined) return ({ pins: {} })
 
     const pins = curUser.pinnedPics || [] 
-    console.log(curUser, curUser.pinnedPics)
+    // console.log(curUser, curUser.pinnedPics)
     return ({ pins })
 
 } 
 
-export default connect(mSTP, undefined)(PinIndex);
+export default withRouter(connect(mSTP, undefined)(PinIndex));

@@ -23,12 +23,13 @@ class BoardIndex extends React.Component {
 
             <div className="board-item">
                 {  
-                    boards.map (board => <BoardIndexItem
+                    boards.map (board => board ? <BoardIndexItem
+
                                         key={board.id}
                                         title={board.title}
                                         board={board}
                                         pinCount={board.classifiedPicIds.length}
-                                         />)
+                                         /> : null)
                 }
             </div>
 

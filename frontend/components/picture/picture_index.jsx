@@ -7,11 +7,11 @@ import Loader from "react-loader-spinner";
 class PictureIndex extends React.Component {
     constructor(props){
         super(props);
-        this.state = {num_loaded: 0, num_total: 54};
+        this.state = {num_loaded: 0, num_total: 50};
 
         this.onImageLoaded = this.onImageLoaded.bind(this);
-    }
     
+    }
     componentDidMount(){
         this.props.requestPictures();
 
@@ -19,6 +19,7 @@ class PictureIndex extends React.Component {
 
     onImageLoaded(){
         //https://www.javascriptstuff.com/detect-image-load/
+        // https://www.javascriptstuff.com/react-image-gallery/
         this.setState({num_loaded: this.state.num_loaded+1});
 
     }
@@ -39,17 +40,18 @@ class PictureIndex extends React.Component {
                     color="#e60023"
                     height={50}
                     width={50}
-                    timeout={3000} //3 secs
+                    timeout={50000} //3 secs
 
                 /> 
                 <div className="hidden-me" hidden>
                         {pictures.map(picture =>
-                <img className="picture-img" src={picture.imageUrl} alt="" 
-                onLoad={this.onImageLoaded}
-            
-                onError={this.onImageLoaded}
+                                    picture?
+                                <img className="picture-img" src={picture.imageUrl} alt="" 
+                                onLoad={this.onImageLoaded}
+                            
+                                onError={this.onImageLoaded}
                                 key={picture.id}
-                />
+                                /> : null
                         )}
 
                 </div>

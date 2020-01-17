@@ -17,6 +17,6 @@ const removePin = (payload) => ({
 export const addPin = (boardId, pictureId) => dispatch => PinUtil.addPin(boardId, pictureId)
 .then((res) => dispatch(receivePin(res)));
 
-export const deletePin = (boardId, id) => dispatch => PinUtil.deletePin(boardId,id)
-.then(() => dispatch(removePin(id)))
+export const deletePin = (boardId, pictureId) => dispatch => PinUtil.deletePin(boardId,pictureId)
+    .then(() => dispatch(removePin({boardId, pictureId})))
 

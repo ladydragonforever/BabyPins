@@ -43,5 +43,5 @@ const mDTP = dispatch => ({
     fetchBoards: () => dispatch(fetchBoards()),
     addPin: (boardId, pictureId) => dispatch(addPin(boardId, pictureId))
 })
-window.addPin = addPin;
+// window.addPin = addPin;
 export default withRouter(connect(mSTP, mDTP)(PictureShow));
