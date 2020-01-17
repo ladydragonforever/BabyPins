@@ -104,6 +104,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBoard", function() { return updateBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBoard", function() { return deleteBoard; });
 /* harmony import */ var _util_board__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/board */ "./frontend/util/board.js");
+/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user */ "./frontend/actions/user.jsx");
+/* harmony import */ var _util_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/user */ "./frontend/util/user.js");
+
+
 
 var RECEIVE_BOARDS = "RECEIVE_BOARDS";
 var RECEIVE_BOARD = "RECEIVE_BOARD";
@@ -162,6 +166,8 @@ var deleteBoard = function deleteBoard(boardId) {
   return function (dispatch) {
     return _util_board__WEBPACK_IMPORTED_MODULE_0__["deleteBoard"](boardId).then(function () {
       return dispatch(removeBoard(boardId));
+    }).then(function () {
+      return dispatch(Object(_user__WEBPACK_IMPORTED_MODULE_1__["requestUser"])());
     });
   };
 };
@@ -267,6 +273,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addPin", function() { return addPin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePin", function() { return deletePin; });
 /* harmony import */ var _util_pin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/pin */ "./frontend/util/pin.js");
+/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user */ "./frontend/actions/user.jsx");
+
 
 var RECEIVE_PIN = "RECEIVE_PIN";
 var REMOVE_PIN = "REMOVE_PIN";
@@ -289,6 +297,8 @@ var addPin = function addPin(boardId, pictureId) {
   return function (dispatch) {
     return _util_pin__WEBPACK_IMPORTED_MODULE_0__["addPin"](boardId, pictureId).then(function (res) {
       return dispatch(receivePin(res));
+    }).then(function () {
+      return dispatch(Object(_user__WEBPACK_IMPORTED_MODULE_1__["requestUser"])());
     });
   };
 };
@@ -299,6 +309,8 @@ var deletePin = function deletePin(boardId, pictureId) {
         boardId: boardId,
         pictureId: pictureId
       }));
+    }).then(function () {
+      return dispatch(Object(_user__WEBPACK_IMPORTED_MODULE_1__["requestUser"])());
     });
   };
 };
@@ -378,6 +390,39 @@ var logout = function logout() {
       return dispatch(logoutCurrentUser(response));
     }, function (err) {
       return dispatch(receiveSessionErrors(err.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./frontend/actions/user.jsx":
+/*!***********************************!*\
+  !*** ./frontend/actions/user.jsx ***!
+  \***********************************/
+/*! exports provided: UPDATE_USER, requestUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_USER", function() { return UPDATE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestUser", function() { return requestUser; });
+/* harmony import */ var _util_user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user */ "./frontend/util/user.js");
+
+var UPDATE_USER = "UPDATE_USER";
+
+var userUpdate = function userUpdate(payload) {
+  return {
+    type: UPDATE_USER,
+    payload: payload
+  };
+};
+
+var requestUser = function requestUser() {
+  return function (dispatch, getState) {
+    var userId = getState().session.id;
+    return Object(_util_user__WEBPACK_IMPORTED_MODULE_0__["fetchUser"])(userId).then(function (res) {
+      return dispatch(userUpdate(res));
     });
   };
 };
@@ -984,12 +1029,13 @@ function (_React$Component) {
         brakePoints: brakePoints
       }, board.pictures.map(function (pic) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "tile",
+          className: "tile-board",
           key: Math.floor(Math.random() * 1000)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: pic.url,
           alt: ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"], {
+          className: "delete-icon",
           icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faTrashAlt"],
           onClick: function onClick() {
             return _this.props.deletePin(_this.props.match.params.boardId, pic.id);
@@ -1560,6 +1606,7 @@ function (_React$Component) {
     value: function onResize() {
       // console.log(this.refs.Masonry, this.refs)
       var columns = this.getColumns(this.refs.Masonry.offsetWidth);
+      console.log("colums", columns);
 
       if (columns !== this.state.columns) {
         this.setState({
@@ -2113,7 +2160,7 @@ function (_React$Component) {
           brakePoints: brakePoints
         }, pins.map(function (pic) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            className: "tile ",
+            className: "tilepin",
             key: i++
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
             src: pic.url,
@@ -3063,11 +3110,13 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session */ "./frontend/actions/session.jsx");
 /* harmony import */ var _actions_board__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/board */ "./frontend/actions/board.jsx");
+/* harmony import */ var _actions_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/user */ "./frontend/actions/user.jsx");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3110,6 +3159,9 @@ var usersReducer = function usersReducer() {
         });
       });
       return newUsersC;
+
+    case _actions_user__WEBPACK_IMPORTED_MODULE_2__["UPDATE_USER"]:
+      return _objectSpread({}, state, _defineProperty({}, action.payload.id, action.payload));
 
     default:
       return state;
@@ -3358,6 +3410,25 @@ var deleteSession = function deleteSession() {
   return $.ajax({
     method: "delete",
     url: "api/session"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/user.js":
+/*!*******************************!*\
+  !*** ./frontend/util/user.js ***!
+  \*******************************/
+/*! exports provided: fetchUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+var fetchUser = function fetchUser(userId) {
+  return $.ajax({
+    method: "Get",
+    url: "/api/users/".concat(userId)
   });
 };
 

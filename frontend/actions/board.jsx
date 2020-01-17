@@ -1,4 +1,6 @@
 import * as BoardUtil from "../util/board"
+import { requestUser } from "./user"
+import { fetchUser } from "../util/user"
 
 export const RECEIVE_BOARDS = "RECEIVE_BOARDS"
 export const RECEIVE_BOARD = "RECEIVE_BOARD"
@@ -20,20 +22,20 @@ const removeBoard = (payload) => ({
 })
 
 export const fetchBoards = () => dispatch => BoardUtil.requestBoards()
-.then(res => dispatch(receiveBoards(res)))
-
+.then(res => dispatch(receiveBoards(res)));
 
 export const fetchBoard = boardId => dispatch => BoardUtil.requestBoard(boardId)
-.then(res => dispatch(receiveBoard(res)))
+.then(res => dispatch(receiveBoard(res)));
 
 export const createBoard = board => dispatch => BoardUtil.createBoard(board)
 .then(res => dispatch(receiveBoard(res)))
 
 export const updateBoard = board => dispatch => BoardUtil.updateBoard(board)
-.then(res => dispatch(receiveBoard(res)))
+.then(res => dispatch(receiveBoard(res)));
 
 export const deleteBoard = boardId => dispatch => BoardUtil.deleteBoard(boardId)
-.then(() => dispatch(removeBoard(boardId)))
+        .then(() => dispatch(removeBoard(boardId)))
+        .then(() => dispatch(requestUser()));
 
 
 window.fetchBoards = fetchBoards;

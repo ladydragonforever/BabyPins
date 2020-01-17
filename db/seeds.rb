@@ -17,21 +17,21 @@ ActiveRecord::Base.transaction do
 
     pictures = {
         '1' => {
-            'title' => 'baby1',
-            'description' => '',
+            'title' => 'Cuttest baby in the world',
+            'description' => 'This is Frog s baby boy. Look at his charby cheeks. Soooo cute! ',
         }, 
         '2' => {
-            'title' => 'baby2',
-            'description' => '',
+            'title' => 'Baby loves vacation as well',
+            'description' => 'Let me think... what should I order as drink?',
         }, 
 
         '3' => {
-            'title' => 'baby3',
-            'description' => '',
+            'title' => 'Marry me! Love!',
+            'description' => 'I am ready. Are you?',
         }, 
         '4' => {
-            'title' => 'baby4',
-            'description' => '',
+            'title' => 'I just want to taste the cake!',
+            'description' => 'I do not understand why adults use utensils.',
         }, 
         '5' => {
             'title' => 'baby5',
@@ -292,13 +292,9 @@ ActiveRecord::Base.transaction do
     pictures_array = Picture.all.to_a
     
     pin1 = Pin.create!(picture_id: pictures_array[0].id , board_id: board1.id)
-    pin2 = Pin.create!(picture_id: pictures_array[1].id , board_id: board1.id) 
-    pin3 = Pin.create!(picture_id: pictures_array[2].id , board_id: board1.id) 
-    pin4 = Pin.create!(picture_id: pictures_array[3].id , board_id: board1.id) 
     pin5 = Pin.create!(picture_id: pictures_array[4].id , board_id: board2.id) 
     pin6 = Pin.create!(picture_id: pictures_array[5].id , board_id: board2.id) 
     pin7 = Pin.create!(picture_id: pictures_array[6].id , board_id: board2.id) 
-    pin8 = Pin.create!(picture_id: pictures_array[7].id , board_id: board2.id) 
     pin9 = Pin.create!(picture_id: pictures_array[9].id , board_id: board3.id) 
     pin10 = Pin.create!(picture_id: pictures_array[10].id , board_id: board3.id) 
     pin11 = Pin.create!(picture_id: pictures_array[11].id , board_id: board3.id) 

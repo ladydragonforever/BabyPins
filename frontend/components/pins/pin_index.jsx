@@ -35,7 +35,7 @@ class PinIndex extends React.Component {
                 <div className="masonry-container">
                     <Masonry brakePoints={brakePoints}>
                         {pins.map(pic =>
-                        <li className="tile "key={i++}>
+                        <li className="tilepin" key={i++}>
                             <img src={pic.url}  alt="" />
                          
                         </li>

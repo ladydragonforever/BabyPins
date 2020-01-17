@@ -1,5 +1,6 @@
 import { RECEIVE_CURRENT_USER } from "../actions/session";
 import { REMOVE_BOARD, RECEIVE_BOARD } from "../actions/board";
+import { UPDATE_USER } from "../actions/user";
 
 const usersReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -27,7 +28,8 @@ const usersReducer = (state = {}, action) => {
                 newUsersC[curUserId] = {...state[curUserId], boardIds: curList}
             })
             return newUsersC;
-        
+        case UPDATE_USER:
+            return {...state, [action.payload.id]: action.payload};
         default: return state;
     }
 

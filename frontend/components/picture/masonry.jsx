@@ -27,6 +27,7 @@ class Masonry extends React.Component {
     onResize() {
         // console.log(this.refs.Masonry, this.refs)
         const columns = this.getColumns(this.refs.Masonry.offsetWidth);
+        console.log("colums", columns);
 
         if (columns !== this.state.columns) {
             this.setState({ columns: columns });

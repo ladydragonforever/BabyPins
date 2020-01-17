@@ -32,10 +32,12 @@ class BoardShow extends React.Component {
                         <Masonry brakePoints={brakePoints}>
                             {
                                 board.pictures.map(pic => <li 
-                                        className="tile"
+                                        className="tile-board"
                                         key={Math.floor(Math.random() * 1000)}>
                                         <img src={pic.url} alt="" />
-                                        <FontAwesomeIcon icon={faTrashAlt} 
+                                        <FontAwesomeIcon 
+                                        className="delete-icon"
+                                        icon={faTrashAlt} 
                                         onClick={() => this.props.deletePin(this.props.match.params.boardId, pic.id)}/>
                                         </li>)
                             }
