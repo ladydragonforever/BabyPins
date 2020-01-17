@@ -13,7 +13,7 @@ ActiveRecord::Base.transaction do
     Board.destroy_all
     Pin.destroy_all
 
-    demo_user = User.create!(email: 'demo@demo.com', password: '123456')
+    demo_user = User.create!(email: 'NewDaddy@demo.com', password: '123456')
 
     pictures = {
         '1' => {

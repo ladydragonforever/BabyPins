@@ -1706,7 +1706,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PictureIndex).call(this, props));
     _this.state = {
       num_loaded: 0,
-      num_total: 50
+      num_total: 20
     };
     _this.onImageLoaded = _this.onImageLoaded.bind(_assertThisInitialized(_this));
     return _this;
@@ -1744,7 +1744,7 @@ function (_React$Component) {
         color: "#e60023",
         height: 50,
         width: 50,
-        timeout: 50000 //3 secs
+        timeout: 30000 //3 secs
 
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "hidden-me",
@@ -2522,7 +2522,7 @@ function (_React$Component) {
     value: function handleDemoSubmit(e) {
       e.preventDefault();
       var user = {
-        email: "demo@demo.com",
+        email: "NewDaddy@demo.com",
         password: "123456"
       };
       this.demo(user);

@@ -7,7 +7,7 @@ import Loader from "react-loader-spinner";
 class PictureIndex extends React.Component {
     constructor(props){
         super(props);
-        this.state = {num_loaded: 0, num_total: 50};
+        this.state = {num_loaded: 0, num_total: 20};
 
         this.onImageLoaded = this.onImageLoaded.bind(this);
     
@@ -40,7 +40,7 @@ class PictureIndex extends React.Component {
                     color="#e60023"
                     height={50}
                     width={50}
-                    timeout={50000} //3 secs
+                    timeout={30000} //3 secs
 
                 /> 
                 <div className="hidden-me" hidden>

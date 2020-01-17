@@ -21,7 +21,7 @@ class SessionForm extends React.Component {
     handleDemoSubmit(e) {
         e.preventDefault();
         const user = {
-            email: "demo@demo.com",
+            email: "NewDaddy@demo.com",
             password: "123456"
         }
         this.demo(user);
