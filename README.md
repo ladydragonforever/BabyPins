@@ -6,8 +6,8 @@ BabyPins is a web application for new parents and baby lovers to find baby resso
 
 ## Features
 
-New account creation, login, and guest/demo login
-- Users can sign up, sign in, log out Users can use a demo login to try the site User's can't access certain features without logging in (follows, favorites)
+* New account creation, login, and guest/demo login
+-- Users can sign up, sign in, log out Users can use a demo login to try the site User's can't access certain features without logging in (follows, favorites)
 
 Discovery feeds
 Users can see a Discover page of all the pictures and view the individual picture information Users can search through the pictures by title or category
