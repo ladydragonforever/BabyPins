@@ -33,7 +33,7 @@ class PictureIndex extends React.Component {
         const display = needDisplayLoading
             ? 
             <div className="container">
-                <h3 className="loader-word">We are adding pictures to your feed!</h3>
+                <h3 className="loader-word">We are adding babies to your bassinet!</h3>
                 <Loader
                     className="loader"
                     type="Audio"

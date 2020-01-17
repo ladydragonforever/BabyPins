@@ -1738,7 +1738,7 @@ function (_React$Component) {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "loader-word"
-      }, "We are adding pictures to your feed!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_loader_spinner__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      }, "We are adding babies to your bassinet!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_loader_spinner__WEBPACK_IMPORTED_MODULE_3___default.a, {
         className: "loader",
         type: "Audio",
         color: "#e60023",
