@@ -44,6 +44,8 @@ TBC
   * jBuilder for backend requests
   * Styling and animations done with SCSS/CSS
 
+## Future features
+TBC
 
 
 
