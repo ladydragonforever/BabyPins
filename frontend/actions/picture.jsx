@@ -1,4 +1,5 @@
-import {fetchPictures, fetchPicture} from "../util/picture"
+import {fetchPictures, fetchPicture} from "../util/picture";
+import {filterPictures} from "../actions/filter";
 
 export const RECEIVE_PICTURES = "RECEIVE_PICTURES";
 export const RECEIVE_PICTURE = "RECEIVE_PICTURE";
@@ -20,6 +21,7 @@ export const requestPictures = () => dispactch => fetchPictures()
 export const requestPicture = (pictureId) => dispactch => fetchPicture(pictureId)
 .then((res) => dispactch(receivePicture(res)))
 
-window.requestPictures = requestPictures;
-window.requestPicture = requestPicture;
+
+// window.requestPictures = requestPictures;
+// window.requestPicture = requestPicture;
 

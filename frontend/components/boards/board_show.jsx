@@ -54,7 +54,7 @@ class BoardShow extends React.Component {
                     <button onClick={()=>this.props.openModal('Edit Board')}>
                      Edit Board
                     </button>
-                    <Modal boardId={board.id}>
+                    <Modal >
                         <EditBoardContainer boardId={board.id} />
                     </Modal>
                     {/* <Link className="profile-create-text" to={`/boards/${board.id}/edit`}>Edit Board</Link> */}

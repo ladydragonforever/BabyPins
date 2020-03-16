@@ -14,6 +14,7 @@ import CreateBoardContainer from "./boards/create_board_container";
 import EditBoardContainer from "./boards/edit_board_container";
 // import PinIndexContainer from "./pins/pin_index_container";
 import ProfileBoardContainer from "./profile/profile_board_container";
+import SearchContainer from "./search/search_container"
 const App = () => (
     <div>
         <Modal><CreateBoardContainer /></Modal>
@@ -24,7 +25,9 @@ const App = () => (
             <AuthRoute exact path="/" component={Welcome}/>  
             {/* <Redirect to="/"/> */}
         </Switch>
-        <ProtectedRoute path="/" component={NavBarContainer}/>
+        <ProtectedRoute exact path="/" component={SearchContainer} />
+        <ProtectedRoute path="/" component={NavBarContainer} />
+
         <ProtectedRoute exact path="/" component={PictureIndexContainer} />
         <ProtectedRoute exact path="/pictures/:pictureId" component={PictureShowContainer} />
         <ProtectedRoute exact path="/profile/boards" component={ProfileBoardContainer} />
@@ -33,6 +36,7 @@ const App = () => (
         <ProtectedRoute exact path="/profile/pins" component={ProfilePinContainer}/> 
         {/* <ProtectedRoute exact path="/boards/new" component={CreateBoardContainer}/> */}
         <ProtectedRoute exact path="/boards/:boardId/edit" component={EditBoardContainer} />
+        
 
         
     </div>

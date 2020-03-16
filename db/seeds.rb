@@ -17,7 +17,7 @@ ActiveRecord::Base.transaction do
 
     pictures = {
         '1' => {
-            'title' => 'Cuttest baby in the world',
+            'title' => 'cute baby in the world',
             'description' => 'This is Frog s baby boy. Look at his charby cheeks. Soooo cute! ',
         }, 
         '2' => {
@@ -34,7 +34,7 @@ ActiveRecord::Base.transaction do
             'description' => 'I do not understand why adults use utensils.',
         }, 
         '5' => {
-            'title' => 'baby5',
+            'title' => 'cute baby',
             'description' => '',
         }, 
         '6' => {

@@ -1,4 +1,5 @@
 import {RECEIVE_PICTURES, RECEIVE_PICTURE} from "../actions/picture";
+import {FILTER_PICTURES} from "../actions/filter";
 
 const picturesReducer = (state={}, action) => {
     Object.freeze(state);
@@ -9,6 +10,8 @@ const picturesReducer = (state={}, action) => {
         case RECEIVE_PICTURE:
             // debugger;
             return Object.assign({}, state, {[action.payload.id]: action.payload});
+        case FILTER_PICTURES:
+            return action.payload;
         default: return state;      
     }
 }

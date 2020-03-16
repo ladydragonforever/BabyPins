@@ -5,7 +5,7 @@ import { faWindowRestore } from "@fortawesome/free-solid-svg-icons";
 class BoardForm extends React.Component {
     constructor(props){
         super(props);
-        console.log("BoardFrom props", this.props);
+        // console.log("BoardFrom props", this.props);
         this.state = this.props.board;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.reset = this.reset.bind(this);

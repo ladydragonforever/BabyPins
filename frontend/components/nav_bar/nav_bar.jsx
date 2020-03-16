@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Search from "../search/search";
+import SearchContainer from "../search/search_container";
 
-const NavBar = ({ currentUser, logout }) => {
+const NavBar = ({ currentUser, logout, filterPictures }) => {
 
 //     const display = currentUser ? (
 //         <div>
@@ -23,6 +25,7 @@ const NavBar = ({ currentUser, logout }) => {
    
         const initial = currentUser ? currentUser.email[0] : null
         const name = currentUser? currentUser.email.split("@")[0].split(".")[0]  : null
+        const searchWords = ["cute baby", "love" ]
 
     return(
         // To change the routes for Following and initial
@@ -32,7 +35,7 @@ const NavBar = ({ currentUser, logout }) => {
                     <img className="nav-logo"src={window.imagesUrl.logo}/>
             </NavLink>
 
-            <input type="search" className="nav-search"/>
+            <SearchContainer searchWords={searchWords}/>
 
             <div className="nav-section">
                 <div className="nav-home">

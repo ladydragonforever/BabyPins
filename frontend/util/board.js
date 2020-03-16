@@ -1,5 +1,4 @@
 export const requestBoards = () => { 
-    console.log("we are here");
     return $.ajax({
         method: "get",
         url: "/api/boards",
