@@ -38,7 +38,7 @@ class EditForm extends React.Component {
 }
 
 const mSTP = (state, ownProps) => {
-    console.log(state, ownProps, ownProps.match.params.boardId, "I'm in editform container")
+    // console.log(state, ownProps, ownProps.match.params.boardId, "I'm in editform container")
     return({
     board: state.entities.boards[ownProps.match.params.boardId],
     formType: "Edit your board"

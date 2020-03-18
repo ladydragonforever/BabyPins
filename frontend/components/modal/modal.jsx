@@ -18,22 +18,22 @@ class Modal extends React.Component {
     if (!modal) {
         return null;
     };
-    let component;
-    switch (modal) {
-        case 'Edit Board':
-            component = this.props.children;
-            break;
-        case 'Create Board':
-            component = this.props.children;
-            break;
-        default:
-            return null;
-    };
+    // let component;
+    // switch (modal) {
+    //     case 'Edit Board':
+    //         component = this.props.children;
+    //         break;
+    //     case 'Create Board':
+    //         component = this.props.children;
+    //         break;
+    //     default:
+    //         return null;
+    // };
     // console.log(component);
     return (
         <div className="modal-board-background" onClick={closeModal}>
             <div className="modal-board-child" onClick={e => e.stopPropagation()}>
-                {component}
+                {this.props.children}
             </div>
         </div>
     )}

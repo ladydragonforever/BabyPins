@@ -1,14 +1,14 @@
-// import {FILTER_PICTURES} from "../actions/filter";
+import {FILTER_PICTURES} from "../actions/filter";
 
-// const filterReducer = (state={}, action) => {
-//     Object.freeze(state);
+const filterReducer = (state={}, action) => {
+    Object.freeze(state);
 
-//     switch(action.type) {
-//         case FILTER_PICTURES:
-//             return action.payload;
-//         default:
-//             return state;    
-//     }
-// }
+    switch(action.type) {
+        case FILTER_PICTURES:
+            return action.payload;
+        default:
+            return state;    
+    }
+}
 
-// export default filterReducer;
+export default filterReducer;

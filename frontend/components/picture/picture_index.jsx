@@ -25,6 +25,7 @@ class PictureIndex extends React.Component {
     }
 
     render(){
+        
         const {pictures} = this.props;
 
         let brakePoints = [350, 500, 750];

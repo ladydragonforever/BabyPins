@@ -1,22 +1,37 @@
 import React from "react";
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
+import { CSSTransition } from "react-transition-group";
+import { withRouter } from "react-router";
 
 class Search extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            inputVal: ""
+            inputVal: "",
+            showList: false
         }
         this.handleInput = this.handleInput.bind(this);
         this.selectWord = this.selectWord.bind(this);
+        this.switchShow = this.switchShow.bind(this);
+        this.disableFocusOut = this.disableFocusOut.bind(this);
     }
 
     handleInput(e) {
+        e.preventDefault();
         this.setState({
             inputVal: e.currentTarget.value
         })
+    }
+    
+    switchShow () {
+
+        this.setState(prevState => ({showList: !prevState.showList }))
+        // console.log("I'm switch show")
+    }
+
+    disableFocusOut (e) {
+        e.preventDefault();
+        console.log(e.currentTarget)
     }
 
     match() {
@@ -46,9 +61,12 @@ class Search extends React.Component {
             inputVal: e.currentTarget.innerText
         });
 
-        // console.log(e.currentTarget.innerText)
         
-        this.props.filterPictures(e.currentTarget.innerText);
+        this.switchShow();
+        let filter = new Promise((resolve) => this.props.filterPictures(e.currentTarget.innerText, resolve));
+        
+        console.log(this.props.location, "check")
+        if (this.props.location.pathname !== "/") filter.then(this.props.history.push("/"))
 
     }
 
@@ -64,19 +82,25 @@ class Search extends React.Component {
 
 
         return(
-            <div className='auto'>
+            <div className='auto'
+                
+                >
                 <input
                     className="nav-search"
                     onChange={this.handleInput}
+                    onFocus={this.switchShow}
+                    onBlur={this.disableFocusOut}
+                    
                     value={this.state.inputVal}
                     placeholder='Search...' />
                 <ul>
-                    <ReactCSSTransitionGroup
-                        transitionName='auto'
+                    
+                    {/* <CSSTransition */}
+                        {/* transitionName='auto'
                         transitionEnterTimeout={500}
-                        transitionLeaveTimeout={500}>
-                        {results}
-                    </ReactCSSTransitionGroup>
+                        transitionLeaveTimeout={500}> */}
+                        {this.state.showList && results}
+                    {/* </CSSTransition> */}
                 </ul>
             </div>
         )
@@ -89,4 +113,4 @@ class Search extends React.Component {
 }
 
 
-export default Search;
+export default withRouter(Search);
