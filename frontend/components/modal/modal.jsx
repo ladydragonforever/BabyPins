@@ -2,8 +2,8 @@ import React from 'react';
 import { closeModal } from '../../actions/modal';
 import {fetchBoard} from "../../actions/board";
 import { connect } from 'react-redux';
-import EditBoardContainer from '../boards/edit_board_container';
-import CreateBoardContainer from '../boards/create_board_container';
+// import EditBoardContainer from '../boards/edit_board_container';
+// import CreateBoardContainer from '../boards/create_board_container';
 import {withRouter} from "react-router-dom";
 
 class Modal extends React.Component {

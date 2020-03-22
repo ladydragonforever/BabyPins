@@ -4,6 +4,8 @@ import BoardIndexContainer from "../boards/board_index_container";
 import PinIndexContainer from "../pins/pin_index_container";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CreateBoardContainer from "../boards/create_board_container";
+import Modal from "../modal/modal";
 
 class Profile extends React.Component {
 
@@ -23,8 +25,10 @@ class Profile extends React.Component {
                 <div className="profile-create">
                     <div className="profile-create-icon" ><FontAwesomeIcon icon={faPlus} /></div>
                     
-                    {this.props.otherForm}
-                    
+                   <button onClick={()=>this.props.openModal("CreateBoard")}>Create Board</button>
+                   <Modal>
+                       <CreateBoardContainer/>
+                   </Modal> 
                     {/* <Link className="profile-create-text" to="/boards/new">Create Board</Link> */}
                 </div>
                 

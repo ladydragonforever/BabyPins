@@ -10,14 +10,14 @@ import PictureIndexContainer from "./picture/picture_index_container";
 import PictureShowContainer from "./picture/picture_show_container";
 import ProfilePinContainer from "./profile/profile_pin_container"
 import BoardShowContainer from "./boards/board_show_container";
-import CreateBoardContainer from "./boards/create_board_container";
-import EditBoardContainer from "./boards/edit_board_container";
+// import CreateBoardContainer from "./boards/create_board_container";
+// import EditBoardContainer from "./boards/edit_board_container";
 // import PinIndexContainer from "./pins/pin_index_container";
 import ProfileBoardContainer from "./profile/profile_board_container";
 import SearchContainer from "./search/search_container"
 const App = () => (
     <div>
-        <Modal><CreateBoardContainer /></Modal>
+        {/* <Modal><CreateBoardContainer /></Modal> */}
         <Switch>
         
             <AuthRoute path="/login" component={LoginFormContainer} />

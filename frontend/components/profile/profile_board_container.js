@@ -7,11 +7,8 @@ import React from "react";
 const mSTP = state => ({
     currentUser: state.entities.users[state.session.id],
     formType: "Boards",
-    otherForm: (
-        <button onClick={() => dispatch(openModal('Create Board'))}>
-            Create Board
-       </button>
-    ),
+    
+    openModal: (modal)=> dispatch(openModal(modal)),
     closeModal: () => dispatch(closeModal())
 })
 

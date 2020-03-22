@@ -1,6 +1,7 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 import { withRouter } from "react-router";
+import Modal from "../modal/modal"
 
 class Search extends React.Component {
 
@@ -16,6 +17,16 @@ class Search extends React.Component {
         this.disableFocusOut = this.disableFocusOut.bind(this);
     }
 
+    componentDidUpdate(prevState, prevProps) {
+       
+    console.log(prevProps)
+       if (prevState.location.pathname !== this.props.location.pathname) {
+           this.setState({
+               inputVal: ""
+           })
+       }
+    }
+
     handleInput(e) {
         e.preventDefault();
         this.setState({
@@ -25,7 +36,8 @@ class Search extends React.Component {
     
     switchShow () {
 
-        this.setState(prevState => ({showList: !prevState.showList }))
+        this.setState(prevState => ({showList: !prevState.showList }));
+        this.props.openModal("Dropdown");
         // console.log("I'm switch show")
     }
 
@@ -33,7 +45,7 @@ class Search extends React.Component {
         e.preventDefault();
         console.log(e.currentTarget)
     }
-
+    
     match() {
         const matches = [];
         const words = this.props.searchWords
@@ -65,7 +77,6 @@ class Search extends React.Component {
         this.switchShow();
         let filter = new Promise((resolve) => this.props.filterPictures(e.currentTarget.innerText, resolve));
         
-        console.log(this.props.location, "check")
         if (this.props.location.pathname !== "/") filter.then(this.props.history.push("/"))
 
     }
@@ -93,15 +104,18 @@ class Search extends React.Component {
                     
                     value={this.state.inputVal}
                     placeholder='Search...' />
-                <ul>
-                    
-                    {/* <CSSTransition */}
-                        {/* transitionName='auto'
-                        transitionEnterTimeout={500}
-                        transitionLeaveTimeout={500}> */}
-                        {this.state.showList && results}
-                    {/* </CSSTransition> */}
-                </ul>
+                <Modal>  
+                    <h1>test</h1>
+                    <ul className="search-dropdownlist">
+                        
+                        {/* <CSSTransition */}
+                            {/* transitionName='auto'
+                            transitionEnterTimeout={500}
+                            transitionLeaveTimeout={500}> */}
+                            {this.state.showList && results}
+                        {/* </CSSTransition> */}
+                    </ul>
+                </Modal>  
             </div>
         )
 

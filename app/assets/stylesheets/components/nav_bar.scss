@@ -7,6 +7,7 @@
     z-index: 3;
     border: 1px solid $pinterest-gray;
     padding: 5px;
+    justify-content: space-between;
 }
 
 .nav-logo {
@@ -45,7 +46,16 @@
     height: 28px; 
     border: 10px solid $pinterest-gray;
     border-radius: 5px;
+    background-color:$pinterest-gray;
+    width: 450px;
+    position: relative;
+}
+.search-dropdownlist {
+    position: absolute;
+    width: 450px;
+    min-height: 200px;;
     background-color: white;
+
 }
 
 .nav-follow {
@@ -91,7 +101,6 @@
 
 .nav-logout {
     display: block;
-    margin: auto;
     height: 18px;
     border: 10px solid white;
     border-radius: 18px;
@@ -102,7 +111,8 @@
     padding-bottom: 4px;
     font-weight: 600;
     // margin-top: 11px;
-    color: gray;;
+    color: gray;
+    margin-right: 50px;
 }
 
 .nav-logout:hover {
